@@ -157,6 +157,7 @@ fn wrap_in_template(title: &str, body_content: &str, prefix: &str, config: &Site
 <html lang='en'>
 <head>
     <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>{title}</title>
     <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
     <link rel='stylesheet' href='{prefix}assets/styles.css'>
