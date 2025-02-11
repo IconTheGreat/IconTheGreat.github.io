@@ -60,9 +60,9 @@ fn main() {
         Commands::Build => {
             println!("Building site...");
 
-            // Ensure `public/posts` folder exists
-            fs::create_dir_all("public/posts")
-                .expect("Failed to create or verify public/posts directory");
+            // Ensure `docs/posts` folder exists
+            fs::create_dir_all("docs/posts")
+                .expect("Failed to create or verify docs/posts directory");
 
             // Collect blog posts to build index.html
             let mut posts_collected: Vec<Post> = Vec::new();
@@ -234,12 +234,12 @@ fn generate_about(file_path: &str, config: &SiteConfig) {
 
             let final_html = wrap_in_template(&page.front_matter.title, &about_body, "", config);
 
-            let mut file = fs::File::create("public/about.html")
+            let mut file = fs::File::create("docs/about.html")
                 .expect("Failed to create about.html");
             file.write_all(final_html.as_bytes())
                 .expect("Failed to write about.html");
 
-            println!("Generated: public/about.html");
+            println!("Generated: docs/about.html");
         }
         Err(e) => {
             println!("Error parsing About page {}: {}", file_path, e);
@@ -262,12 +262,12 @@ fn generate_license(file_path: &str, config: &SiteConfig) {
 
             let final_html = wrap_in_template(&page.front_matter.title, &license_body, "", config);
 
-            let mut file = fs::File::create("public/license.html")
+            let mut file = fs::File::create("docs/license.html")
                 .expect("Failed to create license.html");
             file.write_all(final_html.as_bytes())
                 .expect("Failed to write license.html");
 
-            println!("Generated: public/license.html");
+            println!("Generated: docs/license.html");
         }
         Err(e) => {
             println!("Error parsing License page {}: {}", file_path, e);
@@ -298,7 +298,7 @@ fn generate_index(posts: &Vec<Post>, config: &SiteConfig) {
 
     for post in sorted_posts.iter().take(5) {
         recent_posts_html.push_str("<hr>\n");
-        let link_path = post.file_name.replace("public/", "");
+        let link_path = post.file_name.replace("docs/", "");
         recent_posts_html.push_str(&format!(
             "<li class='post-item'>
                 <span class='post-title'>
@@ -330,13 +330,13 @@ fn generate_index(posts: &Vec<Post>, config: &SiteConfig) {
         config
     );
 
-    // Write to `public/index.html`
-    let mut file = fs::File::create("public/index.html")
-        .expect("Failed to create public/index.html");
+    // Write to `docs/index.html`
+    let mut file = fs::File::create("docs/index.html")
+        .expect("Failed to create docs/index.html");
     file.write_all(final_html.as_bytes())
         .expect("Failed to write index.html");
 
-    println!("Generated: public/index.html");
+    println!("Generated: docs/index.html");
 }
 
 /// Generate `posts.html` listing all posts grouped by year
@@ -359,7 +359,7 @@ fn generate_posts(posts: &Vec<Post>, config: &SiteConfig) {
             last_year = post_year.to_string();
         }
 
-        let link_path = post.file_name.replace("public/", "");
+        let link_path = post.file_name.replace("docs/", "");
         posts_html.push_str(&format!(
             "<hr>\n\
              <div class='post-item'>\n\
@@ -378,11 +378,11 @@ fn generate_posts(posts: &Vec<Post>, config: &SiteConfig) {
     // Wrap in template
     let final_html = wrap_in_template("All Posts", &posts_html, "", config);
 
-    // Write to `public/posts.html`
-    let mut file = fs::File::create("public/posts.html")
-        .expect("Failed to create public/posts.html");
+    // Write to `docs/posts.html`
+    let mut file = fs::File::create("docs/posts.html")
+        .expect("Failed to create docs/posts.html");
     file.write_all(final_html.as_bytes())
         .expect("Failed to write posts.html");
 
-    println!("Generated: public/posts.html");
+    println!("Generated: docs/posts.html");
 }

@@ -12,10 +12,10 @@ pub fn start_server(port: u16) -> std::io::Result<()> {
         let url = request.url().trim_start_matches('/');
         let path = if url.is_empty() {
             // If no file is specified, serve index.html
-            "public/index.html".to_string()
+            "docs/index.html".to_string()
         } else {
             // Serve requested file
-            format!("public/{}", url)
+            format!("docs/{}", url)
         };
 
         let path_obj = Path::new(&path);

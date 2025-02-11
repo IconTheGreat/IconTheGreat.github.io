@@ -26,7 +26,7 @@ pub struct Post {
     pub content: String,
     /// Estimated reading time (in minutes).
     pub reading_time: usize,
-    /// Destination file name (e.g. "public/posts/my-title.html").
+    /// Destination file name (e.g. "docs/posts/my-title.html").
     pub file_name: String,
 }
 
@@ -83,9 +83,9 @@ pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::
     let word_count = markdown_body.split_whitespace().count();
     let reading_time = (word_count as f64 / 200.0).ceil() as usize;
 
-    // 7. Generate a default file name in `public/posts`
+    // 7. Generate a default file name in `docs/posts`
     let file_name = format!(
-        "public/posts/{}.html",
+        "docs/posts/{}.html",
         front_matter.title.to_lowercase().replace(' ', "-")
     );
 
