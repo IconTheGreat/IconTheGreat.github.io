@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>The Art of Writing</title>
+    <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
+    <link rel='stylesheet' href='../assets/styles.css'>
+</head>
+<body>
+<header class='container'>
+  <nav class='flex-nav'>
+    <!-- Left side: brand or home icon -->
+    <ul class='nav-left'>
+      <li><a href='../index.html'><i data-feather='home'></i></a></li>
+    </ul>
+
+    <!-- Right side: links -->
+    <ul class='nav-links' id='navLinks'>
+      <li><a href='../index.html'>Home</a></li>
+      <li><a href='../posts.html'>Posts</a></li>
+      <li><a href='../about.html'>About</a></li>
+      <li><a href='../license.html'>License</a></li>
+    </ul>
+
+    <!-- Hamburger Button (hidden on large screens) -->
+    <button
+      class='hamburger'
+      aria-label='Toggle Menu'
+      onclick='toggleMenu()'>
+      <i data-feather='menu'></i>
+    </button>
+  </nav>
+</header>
+<main class='container'>
+<h1>The Art of Writing</h1>
+                                         <p><strong>By John Doe</strong> - 2025-02-08 - 2 min read</p>
+                                         <h1>Introduction</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id quam et tortor sodales tincidunt. Donec sollicitudin nisl vel erat luctus, nec tincidunt orci sagittis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+<h2>The Journey Begins</h2>
+<p>Integer sit amet felis tincidunt, vestibulum justo sed, dapibus arcu. Duis in nisl dictum, tincidunt libero nec, tempus mauris. Cras aliquet dui ac nisi convallis, sit amet tempor felis volutpat.</p>
+<h3>Exploring the Depths</h3>
+<p>Nulla facilisi. Donec dapibus consectetur magna, et tincidunt ipsum. Suspendisse potenti. Vestibulum dictum dolor at justo tristique, id pretium sapien efficitur.</p>
+<h2>Finding Inspiration</h2>
+<p>Vestibulum in felis eu diam fringilla pharetra. Sed eget ex ac risus mollis scelerisque. Suspendisse auctor, augue eget eleifend euismod, odio libero pharetra velit, ac gravida nulla lorem eget est.</p>
+<h3>The Power of Words</h3>
+<p>Maecenas non nisi nec arcu tristique ultrices. Nam volutpat metus a lacus dictum, id pharetra est luctus. Integer vel nisi non purus ultrices luctus.</p>
+<h4>Understanding the Flow</h4>
+<p>Vivamus eget urna sit amet odio interdum fringilla. Duis cursus ante ac metus congue, ac cursus arcu efficitur.</p>
+<h2>Refining the Craft</h2>
+<p>Aliquam erat volutpat. Fusce facilisis tincidunt dui, at ultricies nunc dapibus eget. Curabitur eget mauris id ligula ullamcorper pretium. Morbi posuere nisi sed urna cursus dapibus.</p>
+<h3>The Role of Practice</h3>
+<p>Donec vitae massa id libero posuere gravida at nec quam. In convallis, erat id lobortis eleifend, orci mauris vehicula turpis, non gravida felis sem nec metus.</p>
+<h3>Overcoming Challenges</h3>
+<p>Suspendisse tincidunt nunc ut risus luctus, id blandit felis feugiat. Curabitur elementum, orci et dignissim vestibulum, odio eros vehicula dolor, a suscipit libero sapien ac felis.</p>
+<h2>A Final Thought</h2>
+<p>Proin non justo eu libero laoreet tincidunt. Aenean cursus, ligula id gravida pharetra, justo sapien tincidunt augue, ac cursus libero odio sed augue. Nunc a convallis urna. Suspendisse et felis in neque sodales luctus.</p>
+<h3>Conclusion</h3>
+<p>Praesent ac erat sed elit scelerisque ultricies. Sed auctor velit vel nulla vehicula, sed tincidunt justo rhoncus. Vestibulum nec sem augue. Integer id ultricies metus.</p>
+<hr />
+<p><em>This is a sample post for users writing their first blog using Xeniria. Modify the content and structure as needed.</em></p>
+
+</main>
+<footer class='container' style='text-align: center;'>
+    <p>
+        <a href='#Your_Github_Link'><i data-feather='github'></i></a>
+        &nbsp;|&nbsp;
+        <a href='#Your_Twitter_Link'><i data-feather='twitter'></i></a>
+    </p>
+    <p class='footer-credit'>
+        © 2025 <a href='#Your_Twitter_Link'>Xeniria</a>. Powered by <a href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
+    </p>
+</footer>
+<script src='https://unpkg.com/feather-icons'></script>
+<script>feather.replace();</script>
+<script>
+  function toggleMenu() {
+    let nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>About Me</title>
+    <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
+    <link rel='stylesheet' href='assets/styles.css'>
+</head>
+<body>
+<header class='container'>
+  <nav class='flex-nav'>
+    <!-- Left side: brand or home icon -->
+    <ul class='nav-left'>
+      <li><a href='index.html'><i data-feather='home'></i></a></li>
+    </ul>
+
+    <!-- Right side: links -->
+    <ul class='nav-links' id='navLinks'>
+      <li><a href='index.html'>Home</a></li>
+      <li><a href='posts.html'>Posts</a></li>
+      <li><a href='about.html'>About</a></li>
+      <li><a href='license.html'>License</a></li>
+    </ul>
+
+    <!-- Hamburger Button (hidden on large screens) -->
+    <button
+      class='hamburger'
+      aria-label='Toggle Menu'
+      onclick='toggleMenu()'>
+      <i data-feather='menu'></i>
+    </button>
+  </nav>
+</header>
+<main class='container'>
+<h1>About Me</h1>
+                 <p>By John Doe</p>
+                 <h1>Welcome to My Blog</h1>
+<p>Hello! My name is <strong>John Doe</strong>, and I’m a passionate writer, technology enthusiast, and lifelong learner. I created this blog to document my journey, share insights, and connect with like-minded individuals.</p>
+<h2>My Background</h2>
+<p>I have always been fascinated by technology and the impact it has on our daily lives. From a young age, I developed an interest in coding, problem-solving, and exploring new ideas. Over the years, I have honed my skills in various fields and continue to expand my knowledge every day.</p>
+<h3>What You’ll Find Here</h3>
+<p>This blog is a collection of my thoughts, research, and experiences. Here, you’ll find:</p>
+<ul>
+<li><strong>In-depth articles</strong> on topics I find interesting.</li>
+<li><strong>Personal reflections</strong> on lessons learned.</li>
+<li><strong>Guides and tutorials</strong> to help others navigate their own journeys.</li>
+</ul>
+<h2>Why I Started This Blog</h2>
+<p>I believe that learning is a continuous process, and the best way to solidify knowledge is by sharing it with others. Writing helps me clarify my thoughts, and if my posts can help or inspire someone, that’s an added bonus!</p>
+<h2>Get in Touch</h2>
+<p>I’d love to hear from you! Feel free to connect with me:</p>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/johndoe">github.com/johndoe</a></li>
+<li><strong>Twitter</strong>: <a href="https://twitter.com/johndoe">twitter.com/johndoe</a></li>
+</ul>
+<p>Thank you for stopping by, and I hope you find something valuable here. Stay curious, and happy reading!</p>
+<hr />
+<p><em>This is a sample About Me page for users creating their own blog using Xeniria. Feel free to customize it to reflect your personality and interests.</em></p>
+
+</main>
+<footer class='container' style='text-align: center;'>
+    <p>
+        <a href='#Your_Github_Link'><i data-feather='github'></i></a>
+        &nbsp;|&nbsp;
+        <a href='#Your_Twitter_Link'><i data-feather='twitter'></i></a>
+    </p>
+    <p class='footer-credit'>
+        © 2025 <a href='#Your_Twitter_Link'>Xeniria</a>. Powered by <a href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
+    </p>
+</footer>
+<script src='https://unpkg.com/feather-icons'></script>
+<script>feather.replace();</script>
+<script>
+  function toggleMenu() {
+    let nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

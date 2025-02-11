@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>All Posts</title>
+    <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
+    <link rel='stylesheet' href='assets/styles.css'>
+</head>
+<body>
+<header class='container'>
+  <nav class='flex-nav'>
+    <!-- Left side: brand or home icon -->
+    <ul class='nav-left'>
+      <li><a href='index.html'><i data-feather='home'></i></a></li>
+    </ul>
+
+    <!-- Right side: links -->
+    <ul class='nav-links' id='navLinks'>
+      <li><a href='index.html'>Home</a></li>
+      <li><a href='posts.html'>Posts</a></li>
+      <li><a href='about.html'>About</a></li>
+      <li><a href='license.html'>License</a></li>
+    </ul>
+
+    <!-- Hamburger Button (hidden on large screens) -->
+    <button
+      class='hamburger'
+      aria-label='Toggle Menu'
+      onclick='toggleMenu()'>
+      <i data-feather='menu'></i>
+    </button>
+  </nav>
+</header>
+<main class='container'>
+<div class='posts-container'>
+<h1 style='text-align: center;'>Posts</h1>
+<h3 class='post-year'>2025</h3>
+<hr>
+<div class='post-item'>
+<a href='posts/the-art-of-writing.html' class='post-title'>The Art of Writing</a>
+<span class='post-date'>2025-02-08</span>
+</div>
+</div>
+
+</main>
+<footer class='container' style='text-align: center;'>
+    <p>
+        <a href='#Your_Github_Link'><i data-feather='github'></i></a>
+        &nbsp;|&nbsp;
+        <a href='#Your_Twitter_Link'><i data-feather='twitter'></i></a>
+    </p>
+    <p class='footer-credit'>
+        © 2025 <a href='#Your_Twitter_Link'>Xeniria</a>. Powered by <a href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
+    </p>
+</footer>
+<script src='https://unpkg.com/feather-icons'></script>
+<script>feather.replace();</script>
+<script>
+  function toggleMenu() {
+    let nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

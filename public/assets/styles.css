@@ -1,0 +1,203 @@
+/* Ensure the page uses the full viewport height for sticky footer */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Make the body a flex container so the footer stays at bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    /* font-size: 0.9rem; (If you want the entire site scaled, move your base font-size here) */
+}
+
+/* The main container flexes to fill remaining space, pushing the footer down */
+main.container {
+    flex: 1;
+}
+
+/* 1) Smaller text across the site (optional if you want it global) */
+body {
+    font-size: 0.9rem;
+}
+
+/* 2) Extra side spacing for .container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* 3) Reduce top/bottom padding in the nav bar */
+header.container {
+    padding-top: 0.2rem;
+    padding-bottom: 0.1rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Centers content in the profile section */
+.profile-container {
+    padding-top: 0.2rem;
+    text-align: center;
+    margin: 1rem 0;  /* Some vertical spacing */
+}
+
+/* Styles your profile image */
+.profile-img {
+    display: block;
+    margin: 0.5rem auto;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+/* Constrain width of the profile description */
+.profile-desc {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Spacing around the "Recent Posts" section */
+.recent-posts {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.recent-posts ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Each post item: title on left, date on right */
+.post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.post-title a {
+    text-decoration: none;
+    /* color: inherit; */
+}
+
+.post-date {
+    color: #bbb;
+    text-align: right;
+}
+
+/* Horizontal rule styling */
+hr {
+    border: 0;
+    border-top: 1px solid #444;
+    margin: 0.5rem 0;
+}
+
+/* Footer credit smaller text */
+.footer-credit {
+    font-size: 0.7rem;
+}
+
+/* Basic nav layout for desktop */
+.flex-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Hamburger is hidden on desktop, shown on mobile */
+.hamburger {
+    display: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #01aaff; /* same blue color as your home icon */
+}
+
+/* By default, nav-links are side by side on desktop */
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+/* FULL-SCREEN OVERLAY ON MOBILE */
+@media (max-width: 768px) {
+    /* Show hamburger on mobile */
+    .hamburger {
+        display: block;
+        z-index: 10000; /* So it's above the overlay if needed */
+    }
+
+    /* Hide nav-links by default; become an overlay when .open is toggled */
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--pico-background-color);
+        color: var(--pico-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        gap: 1rem;
+    }
+
+    /* Reveal the overlay when .open is toggled */
+    .nav-links.open {
+        display: flex;
+    }
+
+    /* Style each link in the overlay */
+    .nav-links li {
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--pico-color);
+        font-size: 1.5rem;
+        text-decoration: none;
+    }
+}
+
+h1 {
+    font-size: 1.75rem; /* default is often ~2em or larger */
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.25rem;
+}
+h4 {
+    font-size: 1.1rem;
+}
+h5 {
+    font-size: 1rem;
+}
+h6 {
+    font-size: 0.9rem;
+}
+
+footer.container {
+    margin-top: 2.5rem; /* Adds spacing above the footer */
+}
+
+/* Add more space above year groupings in posts.html */
+.posts-container h3 {
+    margin-top: 2.5rem;  /* Increased spacing */
+    margin-bottom: 1rem; /* Space before the first post */
+}
+
+/* Post title links (remove underline) */
+.post-title {
+    text-decoration: none;  /* Removes underline */
+    color: var(--pico-primary);
+}

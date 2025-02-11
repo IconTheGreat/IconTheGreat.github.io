@@ -1,0 +1,11 @@
+# Site Configuration
+[site]
+title = "Xeniria"  # Change this to your website's title
+description = "A minimal Static Site Generator built with Rust."  # Short description of yourself
+author = "Xeniria"  # Enter your name
+profile_picture = "assets/img/xeniria.png"  # Place your image in the "assets/img/" directory and update the reference here, or provide the URL of your Twitter profile picture
+
+# Navigation Links
+[links]
+github = "#Your_Github_Link"  # Replace with your GitHub profile link (e.g., "https://github.com/yourusername")
+twitter = "#Your_Twitter_Link"  # Replace with your Twitter profile link (e.g., "https://twitter.com/yourusername")
