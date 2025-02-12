@@ -133,6 +133,15 @@ twitter = "#Your_Twitter_Link"  # Replace with your Twitter profile link (e.g., 
 
 ---
 
+## Keeping Up with Updates
+
+To stay up to date with the latest changes in Xeniria, fetch and merge updates from the upstream repository:
+
+```sh
+git fetch upstream
+git merge upstream/main
+```
+
 ## Development
 
 To contribute or modify Xeniria:
