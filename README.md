@@ -4,6 +4,8 @@ Xeniria is a lightweight and fast static site generator built in Rust. It allows
 
 ## Features
 
+Xeniria comes with a default blog template to help users get started quickly.
+
 - Converts Markdown (`.md`) files into static HTML pages
 - Supports a simple config file (`config.toml`)
 - Fast and efficient with Rust performance
@@ -24,14 +26,16 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 2. Clone the Repository
 
+To set up your own Xeniria-based site, clone the repository and name it using your GitHub Pages format: `<your-username>.github.io`. For example, if your GitHub username is `johndoe`, the repository should be named `johndoe.github.io`.
+
 ```sh
-git clone git@github.com:0xh4ty/xeniria.git <your-repo-name>
+git clone git@github.com:0xh4ty/xeniria.git <your-rep-name>
 cd <your-repo-name>
 ```
 
 ### 3. Create a New GitHub Repository
 
-Go to GitHub and create a new repository with the same name as `<your-repo-name>`.
+Go to GitHub and create a new repository named `<your-username>.github.io`. For example, if your GitHub username is `johndoe`, create a repository called `johndoe.github.io`. Ensure it is **empty** (do not add a README or `.gitignore`).
 
 ### 4. Set Up Remote Repositories
 
@@ -91,6 +95,8 @@ Use the same filenames (`about.md` and `license.md`) inside the `content/` direc
 ---
 
 ## Deploying to GitHub Pages
+
+For a live example, check out [my website](https://0xh4ty.github.io/) which is built using Xeniria.
 
 ### 1. Configure GitHub Pages
 
