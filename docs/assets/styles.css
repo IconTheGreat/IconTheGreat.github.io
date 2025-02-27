@@ -76,22 +76,18 @@ header.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
-    flex-wrap: wrap; /* Allows the title to wrap */
+    margin: 0.5rem 0;
 }
 
-.post-title {
-    flex: 1 1 auto; /* Takes up available space and allows wrapping */
-    white-space: normal; /* Allows natural wrapping without breaking words */
+.post-title a {
+    text-decoration: none;
+    /* color: inherit; */
 }
 
 .post-date {
-    white-space: nowrap; /* Keeps the date always on the right */
-    flex-shrink: 0; /* Prevents the date from being pushed down */
     color: #bbb;
     text-align: right;
 }
-
 
 /* Horizontal rule styling */
 hr {
