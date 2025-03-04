@@ -87,6 +87,8 @@ header.container {
 .post-date {
     color: #bbb;
     text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* Horizontal rule styling */
