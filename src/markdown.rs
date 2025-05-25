@@ -1,6 +1,7 @@
 use serde::Deserialize;
 use std::fs;
 use pulldown_cmark::{Parser, Options, html};
+use slug::slugify;
 
 /// Front matter for a typical blog post (includes date).
 #[derive(Clone, Debug, Deserialize)]
@@ -50,6 +51,7 @@ pub struct Page {
 ///
 /// # My Post Content
 /// ```
+
 pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::Error>> {
     let content = fs::read_to_string(file_path)?;
 
@@ -84,10 +86,8 @@ pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::
     let reading_time = (word_count as f64 / 200.0).ceil() as usize;
 
     // 7. Generate a default file name in `docs/posts`
-    let file_name = format!(
-        "docs/posts/{}.html",
-        front_matter.title.to_lowercase().replace(' ', "-")
-    );
+    let slug = slugify(&front_matter.title);
+    let file_name = format!("docs/posts/{}.html", slug);
 
     Ok(Post {
         front_matter,
