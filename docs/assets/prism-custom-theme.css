@@ -1,0 +1,130 @@
+/**
+ * Custom theme for PrismJS by 0xh4ty
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.8;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+pre.line-numbers .line-numbers-rows {
+    padding-top: 1.3em;
+	line-height: 1.8 !important;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #202632;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+/* Custom Token Colors */
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #999999;
+    font-style: italic;
+}
+
+.token.keyword {
+    color: #569CD6;
+    font-weight: bold;
+}
+
+.token.string,
+.token.char {
+    color: #6A9955;
+}
+
+.token.number,
+.token.constant,
+.token.symbol {
+    color: #CE9178;
+}
+
+.token.boolean {
+    color: #569CD6;
+    font-weight: bold;
+}
+
+.token.function,
+.token.class-name,
+.token.builtin {
+    color: #DCDCAA;
+}
+
+.token.variable,
+.token.operator,
+.token.punctuation,
+.token.property,
+.token.attr-name {
+    color: #f8f8f2;
+}
+
+.token.regex {
+    color: #FFCB6B;
+    font-weight: bold;
+}
+
+.token.important {
+    color: #FFCB6B;
+    font-weight: bold;
+}
+
+.token.deleted {
+    color: #FF6B6B;
+}
+
+.token.inserted {
+    color: #A6E22E;
+}
+
+.token.entity {
+    color: #f8f8f2;
+    cursor: help;
+}
+
+.token.namespace {
+    opacity: 0.8;
+    color: #f8f8f2;
+}
+
+.token.url {
+    color: #9CDCFE;
+    text-decoration: underline;
+}
+
+.token.atrule {
+    color: #C586C0;
+}

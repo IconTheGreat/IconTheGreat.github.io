@@ -81,6 +81,11 @@ pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::
     let parser = Parser::new_ext(markdown_body, Options::all());
     html::push_html(&mut html_output, parser);
 
+    let html_output = html_output.replace(
+        "<pre><code class=\"language-",
+        "<pre class=\"line-numbers\"><code class=\"language-"
+    );
+
     // 6. Calculate estimated reading time (assume ~200 words/min)
     let word_count = markdown_body.split_whitespace().count();
     let reading_time = (word_count as f64 / 200.0).ceil() as usize;
@@ -135,6 +140,11 @@ pub fn parse_page_markdown(file_path: &str) -> Result<Page, Box<dyn std::error::
     let mut html_output = String::new();
     let parser = Parser::new_ext(markdown_body, Options::all());
     html::push_html(&mut html_output, parser);
+
+    let html_output = html_output.replace(
+        "<pre><code class=\"language-",
+        "<pre class=\"line-numbers\"><code class=\"language-"
+    );
 
     Ok(Page {
         front_matter,

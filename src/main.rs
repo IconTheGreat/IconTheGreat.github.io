@@ -161,6 +161,11 @@ fn wrap_in_template(title: &str, body_content: &str, prefix: &str, config: &Site
     <title>{title}</title>
     <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
     <link rel='stylesheet' href='{prefix}assets/styles.css'>
+    <link rel='stylesheet' href='{prefix}assets/prism-custom-theme.css'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css' />
+    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js'></script> <!-- FIRST -->
+    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-solidity.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js'></script>
 </head>
 <body>
 <header class='container'>
