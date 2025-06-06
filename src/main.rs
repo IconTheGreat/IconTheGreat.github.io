@@ -212,13 +212,13 @@ let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() 
     <meta property='og:description' content='{meta_description}'>
     <meta property='og:type' content='article'>
     <meta property='og:url' content='{base_url}{page_url}'>
-    <meta property='og:image' content='{profile_picture}'>
+    <meta property='og:image' content='{base_url}{profile_picture}'>
 
     <!-- Twitter meta -->
     <meta name='twitter:card' content='summary_large_image'>
     <meta name='twitter:title' content='{title}'>
     <meta name='twitter:description' content='{meta_description}'>
-    <meta name='twitter:image' content='{profile_picture}'>
+    <meta name='twitter:image' content='{base_url}{profile_picture}'>
 
     <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
     <link rel='stylesheet' href='{prefix}assets/styles.css'>
