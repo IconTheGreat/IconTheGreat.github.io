@@ -2,6 +2,7 @@
 title: "The Art of Writing"
 date: "2025-02-08"
 author: "John Doe"
+description: "A reflection on writing as a thinking tool — techniques, mindset, and clarity."
 ---
 
 # Introduction

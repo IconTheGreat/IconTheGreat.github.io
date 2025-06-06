@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yourdomain.com/</loc>
+    <lastmod>2025-06-06</lastmod>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/about.html</loc>
+    <lastmod>2025-06-06</lastmod>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/license.html</loc>
+    <lastmod>2025-06-06</lastmod>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/posts.html</loc>
+    <lastmod>2025-06-06</lastmod>
+  </url>
+  <url>
+    <loc>https://yourdomain.com/posts/the-art-of-writing.html</loc>
+    <lastmod>2025-06-06</lastmod>
+  </url>
+</urlset>

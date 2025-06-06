@@ -1,11 +1,11 @@
-use tiny_http::{Server, Response, Header};
 use std::fs;
 use std::path::Path;
+use tiny_http::{Header, Response, Server};
 
 pub fn start_server(port: u16) -> std::io::Result<()> {
     let address = format!("0.0.0.0:{}", port);
-    let server = Server::http(&address)
-        .map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
+    let server =
+        Server::http(&address).map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;
     println!("Serving at http://{}", address);
 
     for request in server.incoming_requests() {
@@ -29,19 +29,19 @@ pub fn start_server(port: u16) -> std::io::Result<()> {
                         response = response.with_header(
                             "Content-Type: text/html; charset=utf-8"
                                 .parse::<Header>()
-                                .unwrap()
+                                .unwrap(),
                         );
                     } else if path.ends_with(".css") {
                         response = response.with_header(
                             "Content-Type: text/css; charset=utf-8"
                                 .parse::<Header>()
-                                .unwrap()
+                                .unwrap(),
                         );
                     } else if path.ends_with(".js") {
                         response = response.with_header(
                             "Content-Type: application/javascript; charset=utf-8"
                                 .parse::<Header>()
-                                .unwrap()
+                                .unwrap(),
                         );
                     }
 

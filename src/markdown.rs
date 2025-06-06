@@ -1,7 +1,7 @@
+use pulldown_cmark::{html, Options, Parser};
 use serde::Deserialize;
-use std::fs;
-use pulldown_cmark::{Parser, Options, html};
 use slug::slugify;
+use std::fs;
 
 /// Front matter for a typical blog post (includes date).
 #[derive(Clone, Debug, Deserialize)]
@@ -9,6 +9,7 @@ pub struct PostFrontMatter {
     pub title: String,
     pub date: String,
     pub author: String,
+    pub description: Option<String>,
 }
 
 /// Front matter for a generic page (like About).
@@ -16,6 +17,7 @@ pub struct PostFrontMatter {
 pub struct PageFrontMatter {
     pub title: String,
     pub author: String,
+    pub description: Option<String>,
 }
 
 /// Represents a single blog post.
@@ -83,7 +85,7 @@ pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::
 
     let html_output = html_output.replace(
         "<pre><code class=\"language-",
-        "<pre class=\"line-numbers\"><code class=\"language-"
+        "<pre class=\"line-numbers\"><code class=\"language-",
     );
 
     // 6. Calculate estimated reading time (assume ~200 words/min)
@@ -143,7 +145,7 @@ pub fn parse_page_markdown(file_path: &str) -> Result<Page, Box<dyn std::error::
 
     let html_output = html_output.replace(
         "<pre><code class=\"language-",
-        "<pre class=\"line-numbers\"><code class=\"language-"
+        "<pre class=\"line-numbers\"><code class=\"language-",
     );
 
     Ok(Page {
