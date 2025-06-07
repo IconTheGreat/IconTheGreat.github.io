@@ -30,6 +30,7 @@ struct SiteInfo {
     author: String,
     profile_picture: String,
     base_url: String,
+    og_image: Option<String>,
 }
 
 /// Holds external links
@@ -193,8 +194,12 @@ let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() 
 } else {
     String::new()
 };
-let og_image_url = format!("{}/{}", config.site.base_url.trim_end_matches('/'), config.site.profile_picture.trim_start_matches('/'));
-let twitter_image_url = format!("{}/{}", config.site.base_url.trim_end_matches('/'), config.site.profile_picture.trim_start_matches('/'));
+// Determine OG image URL: use og_image if present, else profile_picture
+let og_image_path = config.site.og_image.as_deref().unwrap_or(&config.site.profile_picture);
+let og_image_url = format!("{}/{}", config.site.base_url.trim_end_matches('/'), og_image_path.trim_start_matches('/'));
+
+// Twitter image URL is same — Twitter and OG should match
+let twitter_image_url = og_image_url.clone();
 
     format!(
 "<!DOCTYPE html>

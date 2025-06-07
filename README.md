@@ -4,13 +4,14 @@ Xeniria is a lightweight and fast static site generator built in Rust. It allows
 
 ## Features
 
-Xeniria comes with a default blog template to help users get started quickly.
-
-- Converts Markdown (`.md`) files into static HTML pages
-- Supports a simple config file (`config.toml`)
-- Fast and efficient with Rust performance
-- Built-in local development server
-- Easy deployment to GitHub Pages
+* Converts Markdown (`.md`) files into static HTML pages
+* Simple configuration with `config.toml`
+* Built-in local development server
+* SEO optimized
+* Syntax highlighting for code blocks
+* OG image support
+* Easy deployment to GitHub Pages
+* Fast and lightweight — built in Rust
 
 ---
 
@@ -24,12 +25,12 @@ Ensure you have Rust installed on your system:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-2. Clone the Repository
+### 2. Clone the Repository
 
 To set up your own Xeniria-based site, clone the repository and name it using your GitHub Pages format: `<your-username>.github.io`. For example, if your GitHub username is `johndoe`, the repository should be named `johndoe.github.io`.
 
 ```sh
-git clone git@github.com:0xh4ty/xeniria.git <your-rep-name>
+git clone git@github.com:0xh4ty/xeniria.git <your-repo-name>
 cd <your-repo-name>
 ```
 
@@ -101,8 +102,8 @@ For a live example, check out [my website](https://0xh4ty.github.io/) which is b
 
 ### 1. Configure GitHub Pages
 
-- Go to your repository → **Settings → Pages**.
-- Set the deployment branch to `main` and folder to `/docs`.
+* Go to your repository → **Settings → Pages**.
+* Set the deployment branch to `main` and folder to `/docs`.
 
 ### 2. Push Your Site to GitHub
 
@@ -133,6 +134,10 @@ author = "Xeniria"  # Enter your name
 profile_picture = "assets/img/xeniria.png"  # Place your image in the "assets/img/" directory and update the reference here, or provide the URL of your Twitter profile picture
 base_url = "https://yourdomain.com"  # The full URL where your site is hosted (used for sitemap.xml and SEO metadata). Example: "https://0xh4ty.github.io" or "https://myblog.com"
 
+# Optional: specify a dedicated OG image (1200x630 recommended) for better link previews on Twitter, Telegram, Discord, etc.
+# If not specified, the profile_picture will be used as the fallback OG image.
+# og_image = "assets/img/og-default.png"
+
 # Navigation Links
 [links]
 github = "#Your_Github_Link"  # Replace with your GitHub profile link (e.g., "https://github.com/yourusername")
@@ -155,6 +160,8 @@ git fetch upstream
 git merge upstream/main
 ```
 
+---
+
 ## Development
 
 To contribute or modify Xeniria:
@@ -172,4 +179,3 @@ cargo run -- serve
 ## License
 
 Xeniria is open-source under the MIT License.
-
