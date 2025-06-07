@@ -193,6 +193,8 @@ let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() 
 } else {
     String::new()
 };
+let og_image_url = format!("{}/{}", config.site.base_url.trim_end_matches('/'), config.site.profile_picture.trim_start_matches('/'));
+let twitter_image_url = format!("{}/{}", config.site.base_url.trim_end_matches('/'), config.site.profile_picture.trim_start_matches('/'));
 
     format!(
 "<!DOCTYPE html>
@@ -212,13 +214,13 @@ let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() 
     <meta property='og:description' content='{meta_description}'>
     <meta property='og:type' content='article'>
     <meta property='og:url' content='{base_url}{page_url}'>
-    <meta property='og:image' content='{base_url}{profile_picture}'>
+    <meta property='og:image' content='{og_image_url}'>
 
     <!-- Twitter meta -->
     <meta name='twitter:card' content='summary_large_image'>
     <meta name='twitter:title' content='{title}'>
     <meta name='twitter:description' content='{meta_description}'>
-    <meta name='twitter:image' content='{base_url}{profile_picture}'>
+    <meta name='twitter:image' content='{twitter_image_url}'>
 
     <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
     <link rel='stylesheet' href='{prefix}assets/styles.css'>
@@ -282,7 +284,6 @@ let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() 
         meta_description = meta_description,
         base_url = config.site.base_url,
         page_url = page_url,
-        profile_picture = config.site.profile_picture,
         prefix = prefix,
         body_content = body_content,
         author = config.site.author,
