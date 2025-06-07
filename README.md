@@ -11,7 +11,6 @@ Xeniria is a lightweight and fast static site generator built in Rust. It allows
 * Syntax highlighting for code blocks
 * OG image support
 * Easy deployment to GitHub Pages
-* Fast and lightweight — built in Rust
 
 ---
 
