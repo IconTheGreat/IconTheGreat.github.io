@@ -7,9 +7,10 @@ Xeniria is a lightweight and fast static site generator built in Rust. It allows
 * Converts Markdown (`.md`) files into static HTML pages
 * Simple configuration with `config.toml`
 * Built-in local development server
-* SEO optimized
+* SEO optimized for better search visibility
 * Syntax highlighting for code blocks
-* OG image support
+* OG image support for rich link previews
+* Analytics support with optional integrations
 * Easy deployment to GitHub Pages
 
 ---
