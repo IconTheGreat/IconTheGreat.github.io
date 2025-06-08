@@ -37,7 +37,7 @@ pre.line-numbers .line-numbers-rows {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #202632;
+	background: #1a1d29;
 }
 
 /* Inline code */
