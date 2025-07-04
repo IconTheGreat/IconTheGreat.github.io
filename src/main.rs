@@ -186,20 +186,28 @@ fn wrap_in_template(
     } else {
         String::new()
     };
-let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() {
-    format!(
+    let cloudflare_script = if !config.analytics.cloudflare_beacon_token.is_empty() {
+        format!(
         "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{\"token\": \"{}\"}}'></script>",
         config.analytics.cloudflare_beacon_token
     )
-} else {
-    String::new()
-};
-// Determine OG image URL: use og_image if present, else profile_picture
-let og_image_path = config.site.og_image.as_deref().unwrap_or(&config.site.profile_picture);
-let og_image_url = format!("{}/{}", config.site.base_url.trim_end_matches('/'), og_image_path.trim_start_matches('/'));
+    } else {
+        String::new()
+    };
+    // Determine OG image URL: use og_image if present, else profile_picture
+    let og_image_path = config
+        .site
+        .og_image
+        .as_deref()
+        .unwrap_or(&config.site.profile_picture);
+    let og_image_url = format!(
+        "{}/{}",
+        config.site.base_url.trim_end_matches('/'),
+        og_image_path.trim_start_matches('/')
+    );
 
-// Twitter image URL is same — Twitter and OG should match
-let twitter_image_url = og_image_url.clone();
+    // Twitter image URL is same — Twitter and OG should match
+    let twitter_image_url = og_image_url.clone();
 
     format!(
 "<!DOCTYPE html>
@@ -227,13 +235,15 @@ let twitter_image_url = og_image_url.clone();
     <meta name='twitter:description' content='{meta_description}'>
     <meta name='twitter:image' content='{twitter_image_url}'>
 
-    <link rel='stylesheet' href='https://unpkg.com/@picocss/pico@latest/css/pico.min.css'>
+    <link rel='stylesheet' href='{prefix}assets/css/pico.min.css'>
     <link rel='stylesheet' href='{prefix}assets/styles.css'>
     <link rel='stylesheet' href='{prefix}assets/prism-custom-theme.css'>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.css' />
-    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-solidity.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js'></script>
+    <link rel='stylesheet' href='{prefix}assets/prism/prism-line-numbers.min.css'>
+
+    <script src='{prefix}assets/prism/prism.min.js'></script>
+    <script src='{prefix}assets/prism/prism-solidity.min.js'></script>
+    <script src='{prefix}assets/prism/prism-line-numbers.min.js'></script>
+
     {plausible_script}
     {cloudflare_script}
 </head>
@@ -275,7 +285,7 @@ let twitter_image_url = og_image_url.clone();
         © 2025 <a href='{twitter}'>{author}</a>. Powered by <a href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
     </p>
 </footer>
-<script src='https://unpkg.com/feather-icons'></script>
+<script src='{prefix}assets/js/feather.min.js'></script>
 <script>feather.replace();</script>
 <script>
   function toggleMenu() {{
