@@ -252,7 +252,7 @@ fn wrap_in_template(
   <nav class='flex-nav'>
     <!-- Left side: brand or home icon -->
     <ul class='nav-left'>
-      <li><a href='{prefix}index.html'><i data-feather='home'></i></a></li>
+      <li><a href='{prefix}index.html'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-home'><path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'></path><polyline points='9 22 9 12 15 12 15 22'></polyline></svg></a></li>
     </ul>
 
     <!-- Right side: links -->
@@ -268,7 +268,7 @@ fn wrap_in_template(
       class='hamburger'
       aria-label='Toggle Menu'
       onclick='toggleMenu()'>
-      <i data-feather='menu'></i>
+      <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-menu'><line x1='3' y1='12' x2='21' y2='12'></line><line x1='3' y1='6' x2='21' y2='6'></line><line x1='3' y1='18' x2='21' y2='18'></line></svg>
     </button>
   </nav>
 </header>
@@ -277,16 +277,14 @@ fn wrap_in_template(
 </main>
 <footer class='container' style='text-align: center;'>
     <p>
-        <a href='{github}'><i data-feather='github'></i></a>
+        <a href='{github}'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-github'><path d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'></path></svg></a>
         &nbsp;|&nbsp;
-        <a href='{twitter}'><i data-feather='twitter'></i></a>
+        <a href='{twitter}'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-twitter'><path d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z'></path></svg></a>
     </p>
     <p class='footer-credit'>
         © 2025 <a href='{twitter}'>{author}</a>. Powered by <a href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
     </p>
 </footer>
-<script src='{prefix}assets/js/feather.min.js'></script>
-<script>feather.replace();</script>
 <script>
   function toggleMenu() {{
     let nav = document.getElementById('navLinks');
