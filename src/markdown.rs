@@ -1,11 +1,11 @@
+use image::GenericImageView;
+use image::ImageReader;
 use pulldown_cmark::{html, Options, Parser};
+use regex::Regex;
+use reqwest;
 use serde::Deserialize;
 use slug::slugify;
 use std::fs;
-use regex::Regex;
-use image::ImageReader;
-use reqwest;
-use image::GenericImageView;
 use std::time::Duration;
 
 /// Front matter for a typical blog post (includes date).
@@ -101,10 +101,10 @@ pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::
     let slug = slugify(&front_matter.title);
     let file_name = format!("docs/posts/{}.html", slug);
 
-// after you generate html_output
-let img_tag_re = Regex::new(r#"<img\s+[^>]*src="([^"]+)"\s+alt="([^"]*)".*?/?>"#)?;
+    // after you generate html_output
+    let img_tag_re = Regex::new(r#"<img\s+[^>]*src="([^"]+)"\s+alt="([^"]*)".*?/?>"#)?;
 
-let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Captures| {
+    let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Captures| {
     let src = &caps[1];
     let alt = &caps[2];
 
@@ -149,7 +149,6 @@ let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Capture
     println!("Could not open local image '{}', continuing without image", src);
     "".to_string()
 }).to_string();
-
 
     Ok(Post {
         front_matter,
@@ -203,10 +202,10 @@ pub fn parse_page_markdown(file_path: &str) -> Result<Page, Box<dyn std::error::
         "<pre class=\"line-numbers\"><code class=\"language-",
     );
 
-// after you generate html_output
-let img_tag_re = Regex::new(r#"<img\s+[^>]*src="([^"]+)"\s+alt="([^"]*)".*?/?>"#)?;
+    // after you generate html_output
+    let img_tag_re = Regex::new(r#"<img\s+[^>]*src="([^"]+)"\s+alt="([^"]*)".*?/?>"#)?;
 
-let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Captures| {
+    let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Captures| {
     let src = &caps[1];
     let alt = &caps[2];
 
@@ -251,8 +250,6 @@ let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Capture
     println!("Could not open local image '{}', continuing without image", src);
     "".to_string()
 }).to_string();
-
-
 
     Ok(Page {
         front_matter,

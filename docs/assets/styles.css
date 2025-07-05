@@ -150,6 +150,7 @@ hr {
         margin: 0;
         padding: 0;
         gap: 1rem;
+        z-index: 9999;
     }
 
     /* Reveal the overlay when .open is toggled */
