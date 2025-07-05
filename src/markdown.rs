@@ -1,11 +1,11 @@
-use image::GenericImageView;
-use image::ImageReader;
 use pulldown_cmark::{html, Options, Parser};
-use regex::Regex;
-use reqwest;
 use serde::Deserialize;
 use slug::slugify;
 use std::fs;
+use regex::Regex;
+use image::ImageReader;
+use reqwest;
+use image::GenericImageView;
 use std::time::Duration;
 
 /// Front matter for a typical blog post (includes date).
@@ -105,50 +105,50 @@ pub fn parse_post_markdown(file_path: &str) -> Result<Post, Box<dyn std::error::
     let img_tag_re = Regex::new(r#"<img\s+[^>]*src="([^"]+)"\s+alt="([^"]*)".*?/?>"#)?;
 
     let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Captures| {
-    let src = &caps[1];
-    let alt = &caps[2];
+        let src = &caps[1];
+        let alt = &caps[2];
 
-    if src.starts_with("http") {
-        let client = reqwest::blocking::Client::builder()
-            .user_agent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-            .timeout(Duration::from_secs(10))
-            .build()
-            .unwrap();
+        if src.starts_with("http") {
+            let client = reqwest::blocking::Client::builder()
+                .user_agent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                .timeout(Duration::from_secs(10))
+                .build()
+                .unwrap();
 
-        match client.get(src).send() {
-            Ok(response) if response.status().is_success() => {
-                if let Ok(bytes) = response.bytes() {
-                    if let Ok(img) = image::load_from_memory(&bytes) {
-                        let dims = img.dimensions();
-                        return format!(
-                            r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
-                            dims.0, dims.1, src, alt
-                        );
+            match client.get(src).send() {
+                Ok(response) if response.status().is_success() => {
+                    if let Ok(bytes) = response.bytes() {
+                        if let Ok(img) = image::load_from_memory(&bytes) {
+                            let dims = img.dimensions();
+                            return format!(
+                                r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
+                                dims.0, dims.1, src, alt
+                            );
+                        }
                     }
                 }
+                _ => {}
             }
-            _ => {}
+
+            println!("Could not retrieve or decode remote image '{}', continuing without image", src);
+            return "".to_string();
         }
 
-        println!("Could not retrieve or decode remote image '{}', continuing without image", src);
-        return "".to_string();
-    }
+        // local
+        let cleaned_src = src.trim_start_matches("../");
+        let src_path = std::path::Path::new("docs").join(cleaned_src);
 
-    // local
-    let cleaned_src = src.trim_start_matches("../");
-    let src_path = std::path::Path::new("docs").join(cleaned_src);
+        if let Ok(img) = ImageReader::open(&src_path) {
+            let dims = img.into_dimensions().unwrap_or((0, 0));
+            return format!(
+                r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
+                dims.0, dims.1, src, alt
+            );
+        }
 
-    if let Ok(img) = ImageReader::open(&src_path) {
-        let dims = img.into_dimensions().unwrap_or((0, 0));
-        return format!(
-            r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
-            dims.0, dims.1, src, alt
-        );
-    }
-
-    println!("Could not open local image '{}', continuing without image", src);
-    "".to_string()
-}).to_string();
+        println!("Could not open local image '{}', continuing without image", src);
+        "".to_string()
+    }).to_string();
 
     Ok(Post {
         front_matter,
@@ -206,50 +206,50 @@ pub fn parse_page_markdown(file_path: &str) -> Result<Page, Box<dyn std::error::
     let img_tag_re = Regex::new(r#"<img\s+[^>]*src="([^"]+)"\s+alt="([^"]*)".*?/?>"#)?;
 
     let rewritten_html = img_tag_re.replace_all(&html_output, |caps: &regex::Captures| {
-    let src = &caps[1];
-    let alt = &caps[2];
+        let src = &caps[1];
+        let alt = &caps[2];
 
-    if src.starts_with("http") {
-        let client = reqwest::blocking::Client::builder()
-            .user_agent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
-            .timeout(Duration::from_secs(10))
-            .build()
-            .unwrap();
+        if src.starts_with("http") {
+            let client = reqwest::blocking::Client::builder()
+                .user_agent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
+                .timeout(Duration::from_secs(10))
+                .build()
+                .unwrap();
 
-        match client.get(src).send() {
-            Ok(response) if response.status().is_success() => {
-                if let Ok(bytes) = response.bytes() {
-                    if let Ok(img) = image::load_from_memory(&bytes) {
-                        let dims = img.dimensions();
-                        return format!(
-                            r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
-                            dims.0, dims.1, src, alt
-                        );
+            match client.get(src).send() {
+                Ok(response) if response.status().is_success() => {
+                    if let Ok(bytes) = response.bytes() {
+                        if let Ok(img) = image::load_from_memory(&bytes) {
+                            let dims = img.dimensions();
+                            return format!(
+                                r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
+                                dims.0, dims.1, src, alt
+                            );
+                        }
                     }
                 }
+                _ => {}
             }
-            _ => {}
+
+            println!("Could not retrieve or decode remote image '{}', continuing without image", src);
+            return "".to_string();
         }
 
-        println!("Could not retrieve or decode remote image '{}', continuing without image", src);
-        return "".to_string();
-    }
+        // local
+        let cleaned_src = src.trim_start_matches("../");
+        let src_path = std::path::Path::new("docs").join(cleaned_src);
 
-    // local
-    let cleaned_src = src.trim_start_matches("../");
-    let src_path = std::path::Path::new("docs").join(cleaned_src);
+        if let Ok(img) = ImageReader::open(&src_path) {
+            let dims = img.into_dimensions().unwrap_or((0, 0));
+            return format!(
+                r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
+                dims.0, dims.1, src, alt
+            );
+        }
 
-    if let Ok(img) = ImageReader::open(&src_path) {
-        let dims = img.into_dimensions().unwrap_or((0, 0));
-        return format!(
-            r#"<div class='shimmer aspect-ratio' style='--aspect-ratio:{} / {}'><img src="{}" alt="{}"/></div>"#,
-            dims.0, dims.1, src, alt
-        );
-    }
-
-    println!("Could not open local image '{}', continuing without image", src);
-    "".to_string()
-}).to_string();
+        println!("Could not open local image '{}', continuing without image", src);
+        "".to_string()
+    }).to_string();
 
     Ok(Page {
         front_matter,
