@@ -247,7 +247,7 @@ h2 {
   display: inline-block;
   color: #e0e3e7;
   z-index: 2;
-  filter: drop-shadow(0 1px 3px);
+  filter: drop-shadow(0 1px 1px);
 }
 
 .layers {
