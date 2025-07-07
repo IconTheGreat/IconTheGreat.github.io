@@ -28,6 +28,7 @@ struct SiteInfo {
     title: String,
     description: String,
     author: String,
+    author_glitch_effect: bool,
     profile_picture: String,
     base_url: String,
     og_image: Option<String>,
@@ -368,18 +369,32 @@ fn generate_index(posts: &Vec<Post>, config: &SiteConfig) {
     let mut sorted_posts = posts.clone();
     sorted_posts.sort_by(|a, b| b.front_matter.date.cmp(&a.front_matter.date));
 
+    let author_html = if config.site.author_glitch_effect {
+        format!(
+            "<h2 class='profile-name hero glitch layers' data-text='{author}'>
+                <span>{author}</span>
+            </h2>",
+            author = config.site.author
+        )
+    } else {
+        format!(
+            "<h2 class='profile-name'>{author}</h2>",
+            author = config.site.author
+        )
+    };
+
     // Build the "Recent Posts" list
     let mut recent_posts_html = format!(
         "<div class='profile-container'>
             <img class='profile-img' src='{profile_picture}' alt='Profile Picture'>
-            <h2 class='profile-name'>{author}</h2>
+            {author_html}
             <p class='profile-desc'>{description}</p>
         </div>
         <div class='recent-posts'>
         <h3>Recent Posts</h3>
         <ul>",
         profile_picture = config.site.profile_picture,
-        author = config.site.author,
+        author_html = author_html,
         description = config.site.description,
     );
 
