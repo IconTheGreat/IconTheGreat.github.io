@@ -1,11 +1,11 @@
 # Site Configuration
 [site]
-title = "Xeniria"  # Change this to your website's title
-description = "A minimal Static Site Generator built with Rust."  # Short description of yourself
-author = "Xeniria"  # Enter your name
+title = "ICON"  # Change this to your website's title
+description = "solidity/evm chad"  # Short description of yourself
+author = "ICON"  # Enter your name
 author_glitch_effect = true  # Enable glitch animation for the author name on the index page
-profile_picture = "assets/img/xeniria.png"  # Place your image in the "assets/img/" directory and update the reference here, or provide the URL of your Twitter profile picture
-base_url = "https://yourdomain.com"  # The full URL where your site is hosted (used for sitemap.xml and SEO metadata). Example: "https://0xh4ty.github.io" or "https://myblog.com"
+profile_picture = "https://x.com/Icon_The_Great/photo"  # Place your image in the "assets/img/" directory and update the reference here, or provide the URL of your Twitter profile picture
+base_url = "https://IconTheGreat.github.io"  # The full URL where your site is hosted (used for sitemap.xml and SEO metadata). Example: "https://0xh4ty.github.io" or "https://myblog.com"
 # Optional: specify a dedicated OG image (1200x630 recommended) for better link previews on Twitter, Telegram, Discord, etc.
 # If not specified, the profile_picture will be used as the fallback OG image.
 # Example:
@@ -13,8 +13,8 @@ base_url = "https://yourdomain.com"  # The full URL where your site is hosted (u
 
 # Navigation Links
 [links]
-github = "#Your_Github_Link"  # Replace with your GitHub profile link (e.g., "https://github.com/yourusername")
-twitter = "#Your_Twitter_Link"  # Replace with your Twitter profile link (e.g., "https://twitter.com/yourusername")
+github = "https://github.com/IconTheGreat"  # Replace with your GitHub profile link (e.g., "https://github.com/yourusername")
+twitter = "https://twitter.com/Icon_The_Great"  # Replace with your Twitter profile link (e.g., "https://twitter.com/yourusername")
 
 # Analytics
 [analytics]
