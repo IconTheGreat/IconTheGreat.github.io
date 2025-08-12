@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='en'>
-
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -9,15 +8,13 @@
     <title>Build A Deflationary ERC20 Token From Scratch - No dependencies</title>
 
     <!-- Canonical URL -->
-    <link rel='canonical'
-        href='https://IconTheGreat.github.io/posts/build-a-deflationary-erc20-token-from-scratch-no-dependencies.html'>
+    <link rel='canonical' href='https://IconTheGreat.github.io/posts/build-a-deflationary-erc20-token-from-scratch-no-dependencies.html'>
 
     <!-- Open Graph (OG) meta -->
     <meta property='og:title' content='Build A Deflationary ERC20 Token From Scratch - No dependencies'>
     <meta property='og:description' content='how to write a deflationary erc20 from scratch with no dependencies'>
     <meta property='og:type' content='article'>
-    <meta property='og:url'
-        content='https://IconTheGreat.github.io/posts/build-a-deflationary-erc20-token-from-scratch-no-dependencies.html'>
+    <meta property='og:url' content='https://IconTheGreat.github.io/posts/build-a-deflationary-erc20-token-from-scratch-no-dependencies.html'>
     <meta property='og:image' content='https://IconTheGreat.github.io/assets/img/ICON.jpg'>
 
     <!-- Twitter meta -->
@@ -35,87 +32,67 @@
     <script src='../assets/prism/prism-solidity.min.js'></script>
     <script src='../assets/prism/prism-line-numbers.min.js'></script>
 
-
-
+    
+    
 </head>
-
 <body>
-    <header class='container'>
-        <nav class='flex-nav'>
-            <!-- Left side: brand or home icon -->
-            <ul class='nav-left'>
-                <li><a href='../index.html'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
-                            viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'
-                            stroke-linecap='round' stroke-linejoin='round' class='feather feather-home'>
-                            <path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'></path>
-                            <polyline points='9 22 9 12 15 12 15 22'></polyline>
-                        </svg></a></li>
-            </ul>
+<header class='container'>
+  <nav class='flex-nav'>
+    <!-- Left side: brand or home icon -->
+    <ul class='nav-left'>
+      <li><a href='../index.html'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-home'><path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'></path><polyline points='9 22 9 12 15 12 15 22'></polyline></svg></a></li>
+    </ul>
 
-            <!-- Right side: links -->
-            <ul class='nav-links' id='navLinks'>
-                <li><a href='../index.html'>Home</a></li>
-                <li><a href='../posts.html'>Posts</a></li>
-                <li><a href='../about.html'>About</a></li>
-                <li><a href='../license.html'>License</a></li>
-            </ul>
+    <!-- Right side: links -->
+    <ul class='nav-links' id='navLinks'>
+      <li><a href='../index.html'>Home</a></li>
+      <li><a href='../posts.html'>Posts</a></li>
+      <li><a href='../about.html'>About</a></li>
+      <li><a href='../license.html'>License</a></li>
+    </ul>
 
-            <!-- Hamburger Button (hidden on large screens) -->
-            <button class='hamburger' aria-label='Toggle Menu' onclick='toggleMenu()'>
-                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'
-                    stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'
-                    class='feather feather-menu'>
-                    <line x1='3' y1='12' x2='21' y2='12'></line>
-                    <line x1='3' y1='6' x2='21' y2='6'></line>
-                    <line x1='3' y1='18' x2='21' y2='18'></line>
-                </svg>
-            </button>
-        </nav>
-    </header>
-    <main class='container'>
-        <h1>Build A Deflationary ERC20 Token From Scratch - No dependencies</h1>
-        <p><strong>By Icon The Great</strong> - 2025-08-12 - 16 min read</p>
-        <p>This post takes a deep dive into <code>MyDeflationaryToken</code>, a Solidity contract that implements an
-            ERC20-like token with a built-in deflationary fee system. The idea is straightforward: every transfer
-            charges a fee, which is split into a burn portion, a treasury portion, and a hodlers reward portion.</p>
-        <p>The burn portion permanently reduces the supply, creating a deflationary effect over time.</p>
-        <p>We will go through the contract’s structure, variables, and functions, explaining what each part does and why
-            it is there.</p>
-        <h4>GETTING STARTED</h4>
-        <p>To get started we need to have foundry installed on our computer. To install foundry run:</p>
-        <pre class="line-numbers"><code class="language-javascript"># Download foundry installer foundryup
+    <!-- Hamburger Button (hidden on large screens) -->
+    <button
+      class='hamburger'
+      aria-label='Toggle Menu'
+      onclick='toggleMenu()'>
+      <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-menu'><line x1='3' y1='12' x2='21' y2='12'></line><line x1='3' y1='6' x2='21' y2='6'></line><line x1='3' y1='18' x2='21' y2='18'></line></svg>
+    </button>
+  </nav>
+</header>
+<main class='container'>
+<h1>Build A Deflationary ERC20 Token From Scratch - No dependencies</h1>
+                                         <p><strong>By Icon The Great</strong> - 2025-08-12 - 16 min read</p>
+                                         <p>This post takes a deep dive into <code>MyDeflationaryToken</code>, a Solidity contract that implements an ERC20-like token with a built-in deflationary fee system. The idea is straightforward: every transfer charges a fee, which is split into a burn portion, a treasury portion, and a hodlers reward portion.</p>
+<p>The burn portion permanently reduces the supply, creating a deflationary effect over time.</p>
+<p>We will go through the contract’s structure, variables, and functions, explaining what each part does and why it is there.</p>
+<h4>GETTING STARTED</h4>
+<p>To get started we need to have foundry installed on our computer. To install foundry run:</p>
+<pre class="line-numbers"><code class="language-javascript"># Download foundry installer foundryup
 curl -L https://foundry.paradigm.xyz | bash
 # Install forge, cast, anvil, chisel
 foundryup
 # Install the latest nightly release
 foundryup -i nightly
 </code></pre>
-        <p>After getting foundry installed, now lets start building our project, first we will create a new directory in
-            our code editor:</p>
-        <pre class="line-numbers"><code class="language-javascript">mkdir deflationary-erc20
+<p>After getting foundry installed, now lets start building our project, first we will create a new directory in our code editor:</p>
+<pre class="line-numbers"><code class="language-javascript">mkdir deflationary-erc20
 cd deflationary-erc20
 </code></pre>
-        <p>Our <code>deflationary-erc20</code> will be created, then in our directory, lets run:</p>
-        <pre class="line-numbers"><code class="language-javascript">forge init
+<p>Our <code>deflationary-erc20</code> will be created, then in our directory, lets run:</p>
+<pre class="line-numbers"><code class="language-javascript">forge init
 </code></pre>
-        <p><code>forge init</code> spin up a new foundry project in our directory <code>deflationary-erc20</code>, the
-            next thing will will do is to delete the <code>counter.sol</code> file in <code>src</code> and create a new
-            file named <code>MyDeflationaryToken.sol</code>. You can also go ahead and delete <code>counter.t.sol</code>
-            and <code>counter.s.sol</code> in <code>test</code> and <code>script</code> folders respectively.</p>
-        <p>All done? Aye, Let’s get building!</p>
-        <h4>LICENSE AND COMPILER VERSION</h4>
-        <pre class="line-numbers"><code class="language-javascript">//SPDX-License-Identifier: MIT
+<p><code>forge init</code> spin up a new foundry project in our directory <code>deflationary-erc20</code>, the next thing will will do is to delete the <code>counter.sol</code> file in <code>src</code> and create a new file named <code>MyDeflationaryToken.sol</code>. You can also go ahead and delete <code>counter.t.sol</code> and <code>counter.s.sol</code> in <code>test</code> and <code>script</code> folders respectively.</p>
+<p>All done? Aye, Let’s get building!</p>
+<h4>LICENSE AND COMPILER VERSION</h4>
+<pre class="line-numbers"><code class="language-javascript">//SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.19;
 </code></pre>
-        <p>First thing will will do is to indicate the license and solidity version of our contract.
-            <code>The SPDX license identifier</code> declares that the code is under the <code>MIT</code> license, which
-            is permissive and widely used in open source.</p>
-        <p>The <code>pragma solidity ^0.8.19;</code> statement tells the compiler to use Solidity version
-            <em><strong>0.8.19</strong></em> or higher, but not <em><strong>0.9.0</strong></em>. Solidity
-            <em><strong>0.8.x</strong></em> includes built-in overflow and underflow checks, which improve safety.</p>
-        <h4>CONTRACT DOCUMENTATION</h4>
-        <pre class="line-numbers"><code class="language-javascript">/**
+<p>First thing will will do is to indicate the license and solidity version of our contract. <code>The SPDX license identifier</code> declares that the code is under the <code>MIT</code> license, which is permissive and widely used in open source.</p>
+<p>The <code>pragma solidity ^0.8.19;</code> statement tells the compiler to use Solidity version <em><strong>0.8.19</strong></em> or higher, but not <em><strong>0.9.0</strong></em>. Solidity <em><strong>0.8.x</strong></em> includes built-in overflow and underflow checks, which improve safety.</p>
+<h4>CONTRACT DOCUMENTATION</h4>
+<pre class="line-numbers"><code class="language-javascript">/**
  * @title MyDeflationaryToken
  * @author ICON
  * @notice This contract implements a basic ERC20 token with a transfer fee mechanism.
@@ -126,14 +103,10 @@ pragma solidity ^0.8.19;
  * This contract is designed to be simple and efficient, focusing on the core functionalities of an ERC20 token.
  */
 </code></pre>
-        <p>The docstring at the top of the contract explains its purpose, author, and main features. You can skip this
-            for now as its not necessary but at the same time can be very important - its useful for both developers and
-            auditors to quickly understand the intent.</p>
-        <p><em><strong>Make sure you edit the <code>@author</code> to your dev name. Also dont forget to include those
-                    <code>NatSpec(/** .... */)</code> and you can edit the comments to better explain your contract if
-                    you want</strong></em></p>
-        <h4>CUSTOM ERRORS</h4>
-        <pre class="line-numbers"><code class="language-javascript">error MyDeflationaryToken__CantExceedMaxTransferFee();
+<p>The docstring at the top of the contract explains its purpose, author, and main features. You can skip this for now as its not necessary but at the same time can be very important - its useful for both developers and auditors to quickly understand the intent.</p>
+<p><em><strong>Make sure you edit the <code>@author</code> to your dev name. Also dont forget to include those <code>NatSpec(/** .... */)</code> and you can edit the comments to better explain your contract if you want</strong></em></p>
+<h4>CUSTOM ERRORS</h4>
+<pre class="line-numbers"><code class="language-javascript">error MyDeflationaryToken__CantExceedMaxTransferFee();
 error MyDeflationaryToken__AllFeesMustSumUpToTransferFee();
 error MyDeflationaryToken__CantExceedTransferFee();
 error MyDeflationaryToken__CantBeZeroAddress();
@@ -142,89 +115,72 @@ error MyDeflationaryToken__LesserBalance();
 error MyDeflationaryToken__NotApprovedForThisAmount();
 error MyDeflationaryToken__TransferFailed();
 </code></pre>
-        <p>Instead of using <code>require</code> with strings, the contract uses <em><strong>custom
-                    errors</strong></em>. This reduces gas costs because errors store data more efficiently than string
-            messages. Each error has a descriptive name, making it clear what condition failed. We will be using this
-            errors later in our contract, don’t bother understanding them for now tho i made them more descriptive that
-            you can grab their functions just by reading it.</p>
-        <h4>EVENTS</h4>
-        <pre class="line-numbers"><code class="language-javascript">event Transfer(address indexed from, address indexed to, uint256 value);
+<p>Instead of using <code>require</code> with strings, the contract uses <em><strong>custom errors</strong></em>. This reduces gas costs because errors store data more efficiently than string messages. Each error has a descriptive name, making it clear what condition failed. We will be using this errors later in our contract, don’t bother understanding them for now tho i made them more descriptive that you can grab their functions just by reading it.</p>
+<h4>EVENTS</h4>
+<pre class="line-numbers"><code class="language-javascript">event Transfer(address indexed from, address indexed to, uint256 value);
 event Approval(address indexed owner, address indexed spender, uint256 value);
 </code></pre>
-        <p>These is done to match the ERC20 standard events:</p>
-        <ul>
-            <li>Transfer is emitted whenever tokens move between accounts or are minted/burned.</li>
-            <li>Approval is emitted when a wallet approves another address to spend tokens on its behalf.
-                Events are crucial for off-chain tracking, like block explorers or dapps.</li>
-        </ul>
-        <p><em><strong>In the ERC20 token standard, there are some certain functions, events, variables that should be
-                    used in the contract to be considered an ERC20 token.</strong></em></p>
-        <h4>STATE VARIABLES</h4>
-        <p>Let’s specify our state variables.</p>
-        <pre class="line-numbers"><code class="language-javascript">uint256 public transferFee;
+<p>These is done to match the ERC20 standard events:</p>
+<ul>
+<li>Transfer is emitted whenever tokens move between accounts or are minted/burned.</li>
+<li>Approval is emitted when a wallet approves another address to spend tokens on its behalf.
+Events are crucial for off-chain tracking, like block explorers or dapps.</li>
+</ul>
+<p><em><strong>In the ERC20 token standard, there are some certain functions, events, variables that should be used in the contract to be considered an ERC20 token.</strong></em></p>
+<h4>STATE VARIABLES</h4>
+<p>Let’s specify our state variables.</p>
+<pre class="line-numbers"><code class="language-javascript">uint256 public transferFee;
 uint256 public burnPercent;
 uint256 public hodlersPercent;
 uint256 public treasuryPercent;
 address public immutable treasuryWallet;
 address public immutable hodlersDistributionWallet;
 </code></pre>
-        <p>These store the tokenomics configuration:</p>
-        <ul>
-            <li><code>transferFee</code> is the total fee percentage (in basis points).</li>
-            <li>The <code>burnPercent</code>, <code>hodlersPercent</code>, and <code>treasuryPercent</code> split that
-                total fee.</li>
-            <li>The treasury and hodlers wallet addresses are <code>immutable</code>, meaning they are set once at
-                deployment and cannot be changed.</li>
-        </ul>
-        <pre class="line-numbers"><code class="language-javascript">    uint256 private constant MAX_TRANSFER_FEE = 1_000; // 10% in basis points
+<p>These store the tokenomics configuration:</p>
+<ul>
+<li><code>transferFee</code> is the total fee percentage (in basis points).</li>
+<li>The <code>burnPercent</code>, <code>hodlersPercent</code>, and <code>treasuryPercent</code> split that total fee.</li>
+<li>The treasury and hodlers wallet addresses are <code>immutable</code>, meaning they are set once at deployment and cannot be changed.</li>
+</ul>
+<pre class="line-numbers"><code class="language-javascript">    uint256 private constant MAX_TRANSFER_FEE = 1_000; // 10% in basis points
     uint256 private constant PRECISION = 10_000; // 10000 basis points = 100%
 </code></pre>
-        <ul>
-            <li><code>MAX_TRANSFER_FEE</code> is the maximum allowed transfer fee percentage (10% in this case).</li>
-            <li><code>PRECISION</code> represents the basis point scale (10_000 means percentages are in basis points,
-                so 500 means 5%).</li>
-        </ul>
-        <p>You may be asking why we are using <strong>basis points</strong> instead of just using <code>10</code> to
-            represent <code>10%</code> and <code>100</code> to represent <code>100%</code>, the issue is solidity
-            doesn’t support float like other programing languages. If we want to for example, use <code>0.1%</code> as
-            our <code>transferFee</code>, passing <code>0.1</code> as a parameter wont work so we have to make use of
-            basis points. <code>1_000</code> represents <code>10%</code>, <code>500</code> represents <code>5%</code>,
-            <code>10</code> represents <code>0.1%</code> and so one, this is widely used in DeFi.</p>
-        <pre class="line-numbers"><code class="language-javascript">address public immutable owner;
+<ul>
+<li><code>MAX_TRANSFER_FEE</code> is the maximum allowed transfer fee percentage (10% in this case).</li>
+<li><code>PRECISION</code> represents the basis point scale (10_000 means percentages are in basis points, so 500 means 5%).</li>
+</ul>
+<p>You may be asking why we are using <strong>basis points</strong> instead of just using <code>10</code> to represent <code>10%</code> and <code>100</code> to represent <code>100%</code>, the issue is solidity doesn’t support float like other programing languages. If we want to for example, use <code>0.1%</code> as our <code>transferFee</code>, passing <code>0.1</code> as a parameter wont work so we have to make use of basis points. <code>1_000</code> represents <code>10%</code>, <code>500</code> represents <code>5%</code>, <code>10</code> represents <code>0.1%</code> and so one, this is widely used in DeFi.</p>
+<pre class="line-numbers"><code class="language-javascript">address public immutable owner;
 string public constant name = "IconToken";
 string public constant symbol = "ICON";
 uint8 public constant decimals = 18;
 uint256 private _totalSupply;
 </code></pre>
-        <ul>
-            <li><code>owner</code> is the contract owner (set at deployment).</li>
-            <li><code>name</code>, <code>symbol</code>, and <code>decimals</code> follow <code>ERC20</code> metadata
-                standards.</li>
-            <li><code>_totalSupply</code> stores the total number of tokens in circulation.</li>
-        </ul>
-        <pre class="line-numbers"><code class="language-javascript">mapping(address =&gt; uint256) public balances;
+<ul>
+<li><code>owner</code> is the contract owner (set at deployment).</li>
+<li><code>name</code>, <code>symbol</code>, and <code>decimals</code> follow <code>ERC20</code> metadata standards.</li>
+<li><code>_totalSupply</code> stores the total number of tokens in circulation.</li>
+</ul>
+<pre class="line-numbers"><code class="language-javascript">mapping(address =&gt; uint256) public balances;
 mapping(address owner =&gt; mapping(address spender =&gt; uint256 amount)) public approvals;
 </code></pre>
-        <ul>
-            <li><code>balances</code> maps each address to its token balance.</li>
-            <li><code>approvals</code> (or allowances) track how much a spender is allowed to spend from an owner’s
-                account.</li>
-        </ul>
-        <h4>MODIFIERS</h4>
-        <p>We are going to be using <code>modifier onlyOwner</code> for access control, there are some functions in our
-            contract that we will want only the deployer can call, like the <code>mint()</code> and
-            <code>updateFee()</code>.</p>
-        <pre class="line-numbers"><code class="language-javascript">modifier onlyOwner() {
+<ul>
+<li><code>balances</code> maps each address to its token balance.</li>
+<li><code>approvals</code> (or allowances) track how much a spender is allowed to spend from an owner’s account.</li>
+</ul>
+<h4>MODIFIERS</h4>
+<p>We are going to be using <code>modifier onlyOwner</code> for access control, there are some functions in our contract that we will want only the deployer can call, like the <code>mint()</code> and <code>updateFee()</code>.</p>
+<pre class="line-numbers"><code class="language-javascript">modifier onlyOwner() {
     if (msg.sender != owner) {
         revert MyDeflationaryToken__NotOwner();
     }
     _;
 }
 </code></pre>
-        <p>This ensures that certain functions can only be called by the contract owner.</p>
-        <h4>CONSTRUCTOR</h4>
-        <p>And then we have a giant constructor, this is for the contract deployer.</p>
-        <pre class="line-numbers"><code class="language-javascript">    constructor(
+<p>This ensures that certain functions can only be called by the contract owner.</p>
+<h4>CONSTRUCTOR</h4>
+<p>And then we have a giant constructor, this is for the contract deployer.</p>
+<pre class="line-numbers"><code class="language-javascript">    constructor(
         address _treasuryWallet,
         address _hodlersDistributionWallet,
         uint256 _transferFee,
@@ -249,20 +205,19 @@ mapping(address owner =&gt; mapping(address spender =&gt; uint256 amount)) publi
     }
 
 </code></pre>
-        <p>The <code>constructor</code>:</p>
-        <ul>
-            <li>Sets owner to the deployer’s address.</li>
-            <li>Stores the <code>treasury</code> and <code>hodlers</code> wallet addresses.</li>
-            <li>Checks that <code>_transferFee</code> does not exceed <code>MAX_TRANSFER_FEE</code>.</li>
-            <li>Stores <code>transferFee</code>, <code>burnPercent</code>, <code>treasuryPercent</code>, and
-                <code>hodlersPercent</code>.</li>
-            <li>Calculates the sum of all fee percentages and ensures it equals <code>transferFee</code>.</li>
-            <li>Stores the <code>hodlersDistributionWallet</code>.</li>
-        </ul>
-        <p>If any of these conditions fail, the constructor reverts using the relevant custom error.</p>
-        <h4>MINT FUNCTION</h4>
-        <p>Next is the mint function, this allows only the owner i.e the deployer of the contract can call.</p>
-        <pre class="line-numbers"><code class="language-javascript">    function mint(address to, uint256 amount) public onlyOwner {
+<p>The <code>constructor</code>:</p>
+<ul>
+<li>Sets owner to the deployer’s address.</li>
+<li>Stores the <code>treasury</code> and <code>hodlers</code> wallet addresses.</li>
+<li>Checks that <code>_transferFee</code> does not exceed <code>MAX_TRANSFER_FEE</code>.</li>
+<li>Stores <code>transferFee</code>, <code>burnPercent</code>, <code>treasuryPercent</code>, and <code>hodlersPercent</code>.</li>
+<li>Calculates the sum of all fee percentages and ensures it equals <code>transferFee</code>.</li>
+<li>Stores the <code>hodlersDistributionWallet</code>.</li>
+</ul>
+<p>If any of these conditions fail, the constructor reverts using the relevant custom error.</p>
+<h4>MINT FUNCTION</h4>
+<p>Next is the mint function, this allows only the owner i.e the deployer of the contract can call.</p>
+<pre class="line-numbers"><code class="language-javascript">    function mint(address to, uint256 amount) public onlyOwner {
         if (to == address(0)) {
             revert MyDeflationaryToken__CantBeZeroAddress();
         }
@@ -271,29 +226,23 @@ mapping(address owner =&gt; mapping(address spender =&gt; uint256 amount)) publi
         emit Transfer(address(0), to, amount);
     }
 </code></pre>
-        <ul>
-            <li>
-                <p>Anytime the <code>deployer</code> calls the <code>mint()</code> function, they will pass in an
-                    <code>amount</code> they want to mint and the address <code>to</code> that they want to mint too,
-                    Remember <code>onlyOwner</code> can call this function this is why it’s restricted to the owner
-                    using the <code>onlyOwner</code> passed in the function right after public visibility.</p>
-            </li>
-            <li>
-                <p>Checks that to is not the zero address, this is crucial, we don’t want to mint token to
-                    <code>address(0)</code> better known as burn address.</p>
-            </li>
-            <li>
-                <p>We use <code>balances[to] += amount;</code> to increases the recipient’s balance in our balance
-                    mapping we created ealier and then add the amount minted to <code>_totalSupply</code> balance too.
-                </p>
-            </li>
-            <li>
-                <p>Emits a Transfer event from the zero address to indicate minting.</p>
-            </li>
-        </ul>
-        <h4>TRANSFER FUNCTION</h4>
-        <p>This is the function that allows transfers of certain amount of our token from one address to the other.</p>
-        <pre class="line-numbers"><code class="language-javascript">function transfer(address receiver, uint256 amount) public returns (bool) {
+<ul>
+<li>
+<p>Anytime the <code>deployer</code> calls the <code>mint()</code> function, they will pass in an <code>amount</code> they want to mint and the address <code>to</code> that they want to mint too, Remember <code>onlyOwner</code> can call this function this is why it’s restricted to the owner using the <code>onlyOwner</code> passed in the function right after public visibility.</p>
+</li>
+<li>
+<p>Checks that to is not the zero address, this is crucial, we don’t want to mint token to <code>address(0)</code> better known as burn address.</p>
+</li>
+<li>
+<p>We use <code>balances[to] += amount;</code> to increases the recipient’s balance in our balance mapping we created ealier and then add the amount minted to <code>_totalSupply</code> balance too.</p>
+</li>
+<li>
+<p>Emits a Transfer event from the zero address to indicate minting.</p>
+</li>
+</ul>
+<h4>TRANSFER FUNCTION</h4>
+<p>This is the function that allows transfers of certain amount of our token from one address to the other.</p>
+<pre class="line-numbers"><code class="language-javascript">function transfer(address receiver, uint256 amount) public returns (bool) {
         if (balances[msg.sender] &lt; amount) {
             revert MyDeflationaryToken__LesserBalance();
         }
@@ -328,53 +277,50 @@ mapping(address owner =&gt; mapping(address spender =&gt; uint256 amount)) publi
     }
 
 </code></pre>
-        <p>This <code>transfer</code> function sends tokens from the <code>sender</code> (the person calling the
-            function) to another address, but it also applies a transfer fee that gets split into three parts:</p>
-        <ul>
-            <li>
-                <p>Burn (tokens destroyed forever)</p>
-            </li>
-            <li>
-                <p>Treasury wallet (for the project’s funds)</p>
-            </li>
-            <li>
-                <p>Hodlers wallet (distributed to token holders)</p>
-            </li>
-        </ul>
-        <h5>Step-by-Step Explanation:</h5>
-        <h6>Function signature</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<p>This <code>transfer</code> function sends tokens from the <code>sender</code> (the person calling the function) to another address, but it also applies a transfer fee that gets split into three parts:</p>
+<ul>
+<li>
+<p>Burn (tokens destroyed forever)</p>
+</li>
+<li>
+<p>Treasury wallet (for the project’s funds)</p>
+</li>
+<li>
+<p>Hodlers wallet (distributed to token holders)</p>
+</li>
+</ul>
+<h5>Step-by-Step Explanation:</h5>
+<h6>Function signature</h6>
+<pre class="line-numbers"><code class="language-solidity">
 function transfer(address receiver, uint256 amount) public returns (bool)
 </code></pre>
-        <ul>
-            <li><code>receiver</code>: the person you want to send tokens to.</li>
-            <li><code>amount</code>: how many tokens you want to send.</li>
-            <li><code>returns (bool)</code>: returns <code>true</code> if the transfer is successful.</li>
-        </ul>
-        <h6>1. Check the sender’s balance</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<ul>
+<li><code>receiver</code>: the person you want to send tokens to.</li>
+<li><code>amount</code>: how many tokens you want to send.</li>
+<li><code>returns (bool)</code>: returns <code>true</code> if the transfer is successful.</li>
+</ul>
+<h6>1. Check the sender’s balance</h6>
+<pre class="line-numbers"><code class="language-solidity">
 if (balances[msg.sender] &lt; amount) {
     revert MyDeflationaryToken__LesserBalance();
 }
 </code></pre>
-        <p>If the <code>sender</code> don’t have enough tokens, the transaction fails with a custom error
-            <code>MyDeflationaryToken__LesserBalance</code>.</p>
-        <h6>2. Prevent sending to the zero address</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<p>If the <code>sender</code> don’t have enough tokens, the transaction fails with a custom error <code>MyDeflationaryToken__LesserBalance</code>.</p>
+<h6>2. Prevent sending to the zero address</h6>
+<pre class="line-numbers"><code class="language-solidity">
 if (receiver == address(0)) {
     revert MyDeflationaryToken__CantBeZeroAddress();
 }
 </code></pre>
-        <p>The zero address <code>(0x000...000)</code> is like a black hole for tokens. This check prevents accidental
-            loss.</p>
-        <h6>3. Calculate the fee</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<p>The zero address <code>(0x000...000)</code> is like a black hole for tokens. This check prevents accidental loss.</p>
+<h6>3. Calculate the fee</h6>
+<pre class="line-numbers"><code class="language-solidity">
 uint256 fee = (amount * transferFee) / PRECISION;
 transferFee is a percentage (like 200 for 2% if PRECISION is 10,000).
 </code></pre>
-        <p>This line calculates the fee to deduct from the <code>transfer</code>.</p>
-        <h6>4. Split the fee into parts</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<p>This line calculates the fee to deduct from the <code>transfer</code>.</p>
+<h6>4. Split the fee into parts</h6>
+<pre class="line-numbers"><code class="language-solidity">
 if (fee &gt; 0 &amp;&amp; transferFee &gt; 0) {
     burnShare = (fee * burnPercent) / transferFee;
     treasuryShare = (fee * treasuryPercent) / transferFee;
@@ -385,91 +331,89 @@ if (fee &gt; 0 &amp;&amp; transferFee &gt; 0) {
     hodlersShare = 0;
 }
 </code></pre>
-        <ul>
-            <li>
-                <p><code>burnShare</code>: part of the fee that gets destroyed.</p>
-            </li>
-            <li>
-                <p><code>treasuryShare</code>: goes to the project’s treasury.</p>
-            </li>
-            <li>
-                <p><code>hodlersShare</code>: goes to the special wallet for rewarding holders.</p>
-            </li>
-        </ul>
-        <p>If there’s no fee, all shares are set to 0.</p>
-        <h6>5. Calculate the net amount to send</h6>
-        <pre class="line-numbers"><code class="language-solidity">uint256 netAmount = amount - fee;
+<ul>
+<li>
+<p><code>burnShare</code>: part of the fee that gets destroyed.</p>
+</li>
+<li>
+<p><code>treasuryShare</code>: goes to the project’s treasury.</p>
+</li>
+<li>
+<p><code>hodlersShare</code>: goes to the special wallet for rewarding holders.</p>
+</li>
+</ul>
+<p>If there’s no fee, all shares are set to 0.</p>
+<h6>5. Calculate the net amount to send</h6>
+<pre class="line-numbers"><code class="language-solidity">uint256 netAmount = amount - fee;
 </code></pre>
-        <p>This is the actual amount the receiver will get after subtracting the fee.</p>
-        <h6>6. Update balances</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<p>This is the actual amount the receiver will get after subtracting the fee.</p>
+<h6>6. Update balances</h6>
+<pre class="line-numbers"><code class="language-solidity">
 balances[receiver] += netAmount;
 balances[treasuryWallet] += treasuryShare;
 balances[hodlersDistributionWallet] += hodlersShare;
 balances[msg.sender] -= amount;
 _totalSupply -= burnShare;
 </code></pre>
-        <ul>
-            <li>
-                <p>Add tokens to the receiver’s balance.</p>
-            </li>
-            <li>
-                <p>Add the treasury and hodler’s shares to their wallets.</p>
-            </li>
-            <li>
-                <p>Subtract the full amount from the sender (because the fee is also taken from them).</p>
-            </li>
-        </ul>
-        <p>Reduce <code>_totalSupply</code> by the burn amount (permanently removing tokens).</p>
-        <h6>7. Emit Transfer events</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<ul>
+<li>
+<p>Add tokens to the receiver’s balance.</p>
+</li>
+<li>
+<p>Add the treasury and hodler’s shares to their wallets.</p>
+</li>
+<li>
+<p>Subtract the full amount from the sender (because the fee is also taken from them).</p>
+</li>
+</ul>
+<p>Reduce <code>_totalSupply</code> by the burn amount (permanently removing tokens).</p>
+<h6>7. Emit Transfer events</h6>
+<pre class="line-numbers"><code class="language-solidity">
 emit Transfer(msg.sender, receiver, netAmount);
 if (treasuryShare &gt; 0) emit Transfer(msg.sender, treasuryWallet, treasuryShare);
 if (hodlersShare &gt; 0) emit Transfer(msg.sender, hodlersDistributionWallet, hodlersShare);
 if (burnShare &gt; 0) emit Transfer(msg.sender, address(0), burnShare);
 </code></pre>
-        <p>Transfer events let blockchain explorers (like Etherscan) and frontends track token movements. Even burning
-            is logged as a <code>transfer</code> to the <code>zero</code> address.</p>
-        <h6>8. Return success</h6>
-        <pre class="line-numbers"><code class="language-solidity">
+<p>Transfer events let blockchain explorers (like Etherscan) and frontends track token movements. Even burning is logged as a <code>transfer</code> to the <code>zero</code> address.</p>
+<h6>8. Return success</h6>
+<pre class="line-numbers"><code class="language-solidity">
 return true;
 The function ends successfully and returns true.
 </code></pre>
-        <h6>Example:</h6>
-        <p>If Alice sends 100 tokens to Bob with:</p>
-        <ul>
-            <li>
-                <p><code>transferFee</code> = 5%</p>
-            </li>
-            <li>
-                <p><code>burnPercent</code> = 40%</p>
-            </li>
-            <li>
-                <p><code>treasuryPercent</code> = 40%</p>
-            </li>
-        </ul>
-        <p>The rest goes to hodlers.</p>
-        <h6>Then:</h6>
-        <ul>
-            <li>
-                <p>Fee = 5 tokens.</p>
-            </li>
-            <li>
-                <p>Burn = 2 tokens.</p>
-            </li>
-            <li>
-                <p>Treasury = 2 tokens.</p>
-            </li>
-            <li>
-                <p>Hodlers = 1 token.</p>
-            </li>
-        </ul>
-        <p>Bob gets 95 tokens.</p>
-        <p>Supply decreases by 2 tokens.</p>
-        <h4>TRANSFER FROM FUNCTION</h4>
-        <p>This performs almost the same function as the <code>transfer()</code> but here someone or another contract
-            can transfer a user tokens on their behalf.</p>
-        <pre class="line-numbers"><code class="language-javascript">function transferFrom(address sender, address receiver, uint256 amount) public returns (bool) {
+<h6>Example:</h6>
+<p>If Alice sends 100 tokens to Bob with:</p>
+<ul>
+<li>
+<p><code>transferFee</code> = 5%</p>
+</li>
+<li>
+<p><code>burnPercent</code> = 40%</p>
+</li>
+<li>
+<p><code>treasuryPercent</code> = 40%</p>
+</li>
+</ul>
+<p>The rest goes to hodlers.</p>
+<h6>Then:</h6>
+<ul>
+<li>
+<p>Fee = 5 tokens.</p>
+</li>
+<li>
+<p>Burn = 2 tokens.</p>
+</li>
+<li>
+<p>Treasury = 2 tokens.</p>
+</li>
+<li>
+<p>Hodlers = 1 token.</p>
+</li>
+</ul>
+<p>Bob gets 95 tokens.</p>
+<p>Supply decreases by 2 tokens.</p>
+<h4>TRANSFER FROM FUNCTION</h4>
+<p>This performs almost the same function as the <code>transfer()</code> but here someone or another contract can transfer a user tokens on their behalf.</p>
+<pre class="line-numbers"><code class="language-javascript">function transferFrom(address sender, address receiver, uint256 amount) public returns (bool) {
         if (approvals[sender][msg.sender] &lt; amount) {
             revert MyDeflationaryToken__NotApprovedForThisAmount();
         }
@@ -511,97 +455,89 @@ The function ends successfully and returns true.
         return true;
     }
 </code></pre>
-        <p>Steps:</p>
-        <ul>
-            <li>Checks <code>allowance</code> from sender to <code>msg.sender</code>.</li>
-            <li>Checks <code>sender’s balance</code>.</li>
-            <li>Ensures neither <code>address</code> is the <code>zero</code> address.</li>
-            <li>Calculates the same <code>fee</code> splits as <code>transfer()</code>.</li>
-            <li>Updates <code>balances</code> accordingly.</li>
-            <li>Decreases the <code>spender’s allowance</code>.</li>
-            <li>Reduces <code>_totalSupply</code> by the burn amount.</li>
-            <li>Emits the same set of Transfer events.</li>
-        </ul>
-        <h4>APPROVE FUNCTION</h4>
-        <p>Now, Let’s make sure people can approve some particular contract to use <code>transferFrom()</code> on thier
-            tokens.</p>
-        <pre class="line-numbers"><code class="language-javascript">    function approve(address spender, uint256 amount) public returns (bool) {
+<p>Steps:</p>
+<ul>
+<li>Checks <code>allowance</code> from sender to <code>msg.sender</code>.</li>
+<li>Checks <code>sender’s balance</code>.</li>
+<li>Ensures neither <code>address</code> is the <code>zero</code> address.</li>
+<li>Calculates the same <code>fee</code> splits as <code>transfer()</code>.</li>
+<li>Updates <code>balances</code> accordingly.</li>
+<li>Decreases the <code>spender’s allowance</code>.</li>
+<li>Reduces <code>_totalSupply</code> by the burn amount.</li>
+<li>Emits the same set of Transfer events.</li>
+</ul>
+<h4>APPROVE FUNCTION</h4>
+<p>Now, Let’s make sure people can approve some particular contract to use <code>transferFrom()</code> on thier tokens.</p>
+<pre class="line-numbers"><code class="language-javascript">    function approve(address spender, uint256 amount) public returns (bool) {
         approvals[msg.sender][spender] = amount;
         emit Approval(msg.sender, spender, amount);
         return true;
     }
 </code></pre>
-        <h6>Function Overview</h6>
-        <pre class="line-numbers"><code class="language-solidity">function approve(address spender, uint256 amount) public returns (bool)
+<h6>Function Overview</h6>
+<pre class="line-numbers"><code class="language-solidity">function approve(address spender, uint256 amount) public returns (bool)
 </code></pre>
-        <ul>
-            <li>
-                <p><code>spender</code> → the address you want to give permission to spend your tokens.</p>
-            </li>
-            <li>
-                <p><code>amount</code> → how many tokens they’re allowed to spend on your behalf.</p>
-            </li>
-            <li>
-                <p><code>returns (bool)</code> → returns <code>true</code> if successful.</p>
-            </li>
-        </ul>
-        <p>This is part of the <code>ERC-20</code> token standard and is used before someone calls
-            <code>transferFrom()</code>.</p>
-        <h6>Step-by-Step:</h6>
-        <h6>1. Set the allowance</h6>
-        <pre class="line-numbers"><code class="language-solidity">approvals[msg.sender][spender] = amount;
+<ul>
+<li>
+<p><code>spender</code> → the address you want to give permission to spend your tokens.</p>
+</li>
+<li>
+<p><code>amount</code> → how many tokens they’re allowed to spend on your behalf.</p>
+</li>
+<li>
+<p><code>returns (bool)</code> → returns <code>true</code> if successful.</p>
+</li>
+</ul>
+<p>This is part of the <code>ERC-20</code> token standard and is used before someone calls <code>transferFrom()</code>.</p>
+<h6>Step-by-Step:</h6>
+<h6>1. Set the allowance</h6>
+<pre class="line-numbers"><code class="language-solidity">approvals[msg.sender][spender] = amount;
 </code></pre>
-        <ul>
-            <li>
-                <p><code>approvals</code> is a mapping that stores how much each spender is allowed to spend from each
-                    owner.</p>
-            </li>
-            <li>
-                <p><code>msg.sender</code> is the owner (the one granting permission).</p>
-            </li>
-            <li>
-                <p><code>spender</code> is the authorized address.</p>
-            </li>
-        </ul>
-        <p>This line sets the allowed amount to amount.</p>
-        <h6>Example:</h6>
-        <p>If Alice calls:</p>
-        <pre class="line-numbers"><code class="language-solidity">approve(Bob, 50);
+<ul>
+<li>
+<p><code>approvals</code> is a mapping that stores how much each spender is allowed to spend from each owner.</p>
+</li>
+<li>
+<p><code>msg.sender</code> is the owner (the one granting permission).</p>
+</li>
+<li>
+<p><code>spender</code> is the authorized address.</p>
+</li>
+</ul>
+<p>This line sets the allowed amount to amount.</p>
+<h6>Example:</h6>
+<p>If Alice calls:</p>
+<pre class="line-numbers"><code class="language-solidity">approve(Bob, 50);
 </code></pre>
-        <h6>That means:</h6>
-        <pre class="line-numbers"><code class="language-solidity">approvals[Alice][Bob] = 50;
+<h6>That means:</h6>
+<pre class="line-numbers"><code class="language-solidity">approvals[Alice][Bob] = 50;
 </code></pre>
-        <p>So <code>Bob</code> can now move up to <code>50</code> tokens from <code>Alice’s</code> balance using
-            <code>transferFrom()</code>.</p>
-        <h6>2. Emit an <code>Approval</code> event</h6>
-        <pre class="line-numbers"><code class="language-solidity">emit Approval(msg.sender, spender, amount);
+<p>So <code>Bob</code> can now move up to <code>50</code> tokens from <code>Alice’s</code> balance using <code>transferFrom()</code>.</p>
+<h6>2. Emit an <code>Approval</code> event</h6>
+<pre class="line-numbers"><code class="language-solidity">emit Approval(msg.sender, spender, amount);
 </code></pre>
-        <p>This logs the approval on the blockchain. Wallets and dApps (like Uniswap) watch for this event so they know
-            when they have permission.</p>
-        <h6>3. Return <code>success</code></h6>
-        <pre class="line-numbers"><code class="language-solidity">return true;
+<p>This logs the approval on the blockchain. Wallets and dApps (like Uniswap) watch for this event so they know when they have permission.</p>
+<h6>3. Return <code>success</code></h6>
+<pre class="line-numbers"><code class="language-solidity">return true;
 </code></pre>
-        <p>Returns <code>true</code> to confirm the approval worked.</p>
-        <p>Remember this function doesn’t transfer tokens — it only sets permission. Once approved, the spender can call
-            <code>transferFrom()</code> until they use up the allowance, or the owner changes it with another
-            <code>approve()</code> call.</p>
-        <p>If you <code>approve</code> again, it overwrites the previous <code>allowance</code>.</p>
-        <h6>Example in Action:</h6>
-        <ul>
-            <li>Alice has 100 tokens.</li>
-            <li>Alice calls:</li>
-        </ul>
-        <pre class="line-numbers"><code class="language-solidity">approve(Bob, 40);
+<p>Returns <code>true</code> to confirm the approval worked.</p>
+<p>Remember this function doesn’t transfer tokens — it only sets permission. Once approved, the spender can call <code>transferFrom()</code> until they use up the allowance, or the owner changes it with another <code>approve()</code> call.</p>
+<p>If you <code>approve</code> again, it overwrites the previous <code>allowance</code>.</p>
+<h6>Example in Action:</h6>
+<ul>
+<li>Alice has 100 tokens.</li>
+<li>Alice calls:</li>
+</ul>
+<pre class="line-numbers"><code class="language-solidity">approve(Bob, 40);
 </code></pre>
-        <p>→ Now Bob is allowed to take up to 40 tokens from Alice.</p>
-        <h6>Bob can now call:</h6>
-        <pre class="line-numbers"><code class="language-solidity">transferFrom(Alice, Charlie, 25);
+<p>→ Now Bob is allowed to take up to 40 tokens from Alice.</p>
+<h6>Bob can now call:</h6>
+<pre class="line-numbers"><code class="language-solidity">transferFrom(Alice, Charlie, 25);
 </code></pre>
-        <p>→ Charlie gets 25 tokens, Bob’s remaining allowance = 15.</p>
-        <h4>UPDATE FEES function</h4>
-        <p>The purpose of the <code>updateFee()</code> is to let the contract owner change the transfer fee and how that
-            fee is split between burn, treasury, and hodlers.</p>
-        <pre class="line-numbers"><code class="language-javascript">    function updateFees(
+<p>→ Charlie gets 25 tokens, Bob’s remaining allowance = 15.</p>
+<h4>UPDATE FEES function</h4>
+<p>The purpose of the <code>updateFee()</code> is to let the contract owner change the transfer fee and how that fee is split between burn, treasury, and hodlers.</p>
+<pre class="line-numbers"><code class="language-javascript">    function updateFees(
         uint256 _newTransferFee,
         uint256 _newBurnPercent,
         uint256 _newTreasuryPercent,
@@ -620,26 +556,24 @@ The function ends successfully and returns true.
         }
     }
 </code></pre>
-        <h6>Step-by-step</h6>
-        <ul>
-            <li>Access control</li>
-        </ul>
-        <p>Uses <code>onlyOwner</code> modifier → only deployer/owner can call.</p>
-        <ul>
-            <li>Max fee check</li>
-        </ul>
-        <p>If <code>_newTransferFee &gt; MAX_TRANSFER_FEE (10%)</code>, it reverts.</p>
-        <ul>
-            <li>Update state</li>
-        </ul>
-        <p>Sets new <code>transferFee</code>, <code>burnPercent</code>, <code>treasuryPercent</code>,
-            <code>hodlersPercent</code>.</p>
-        <ul>
-            <li>Ensures the same checkings and validations as the previous <code>constructor()</code> when deploying.
-                using this function affects all future transfers, but not past ones.</li>
-        </ul>
-        <h4>INCREASE AND DECREASE ALLOWANCE FUNCTION</h4>
-        <pre class="line-numbers"><code class="language-javascript">    function increaseAllowance(address spender, uint256 addedValue) public onlyOwner returns (bool) {
+<h6>Step-by-step</h6>
+<ul>
+<li>Access control</li>
+</ul>
+<p>Uses <code>onlyOwner</code> modifier → only deployer/owner can call.</p>
+<ul>
+<li>Max fee check</li>
+</ul>
+<p>If <code>_newTransferFee &gt; MAX_TRANSFER_FEE (10%)</code>, it reverts.</p>
+<ul>
+<li>Update state</li>
+</ul>
+<p>Sets new <code>transferFee</code>, <code>burnPercent</code>, <code>treasuryPercent</code>, <code>hodlersPercent</code>.</p>
+<ul>
+<li>Ensures the same checkings and validations as the previous <code>constructor()</code> when deploying. using this function affects all future transfers, but not past ones.</li>
+</ul>
+<h4>INCREASE AND DECREASE ALLOWANCE FUNCTION</h4>
+<pre class="line-numbers"><code class="language-javascript">    function increaseAllowance(address spender, uint256 addedValue) public onlyOwner returns (bool) {
         approvals[msg.sender][spender] += addedValue;
         emit Approval(msg.sender, spender, approvals[msg.sender][spender]);
         return true;
@@ -654,65 +588,40 @@ The function ends successfully and returns true.
         return true;
     }
 </code></pre>
-        <p>These two function does so simple and almost similar thing, <code>increaseAllowance()</code> to obviously
-            increase the spender <code>allowance</code>. <code>addedValue</code> is added to existing
-            <code>approvals[msg.sender][spender]</code>, emits <code>Approval</code> with the new total allowance and
-            return <code>true</code> for success.</p>
-        <p>The <code>decreaseAllowance()</code> on the other hand to decrease the spender allwonces. It gets the current
-            allowance, If trying to subtract more than allowed, <code>revert</code>. If not, subtract
-            <code>subtractedValue</code> from allowance. Emit <code>Approval</code> with the new allowance.</p>
-        <p>Return true.</p>
-        <h4>VIEW FUNCTION</h4>
-        <ul>
-            <li><code>totalSupply()</code> returns the current total supply.</li>
-            <li><code>balanceOf(address user)</code> returns a specific wallet’s token balance.</li>
-            <li><code>allowance(address _owner, address spender)</code> returns the current approved amount for a
-                spender.</li>
-        </ul>
-        <p>And Voila! We’ve just built a deflationary ERC-20 token with a transfer fee mechanism that burns tokens,
-            funds the treasury, and rewards holders.</p>
-        <p>This mechanism can help create scarcity while funding development and incentivizing long-term holding. It’s a
-            great fit for projects that want sustainable tokenomics.</p>
-        <p>You can try deploying this contract on a testnet, tweak the fee percentages, or extend it with staking
-            features. If you build something with it, share your results. I’d love to see them!</p>
-        <p>Also remember we use no battles tested dependencies like Openzeppelin here. I’m not perfect, if you spot any
-            bug in this contract, feel free to PR on my Github (Link below)</p>
-        <h4>THANKS FOR READING!!</h4>
-        <p>Check the full code here on <a href="https://github.com/IconTheGreat/deflationary-erc20">Github</a></p>
-        <p>And don’t forget to follow me on my socials to keep up on what im building next <a
-                href="https://x.com/Icon_The_Great">Twitter</a></p>
-        <p>ciao ciao!!</p>
+<p>These two function does so simple and almost similar thing, <code>increaseAllowance()</code> to obviously increase the spender <code>allowance</code>. <code>addedValue</code> is added to existing <code>approvals[msg.sender][spender]</code>, emits <code>Approval</code> with the new total allowance and return <code>true</code> for success.</p>
+<p>The <code>decreaseAllowance()</code> on the other hand to decrease the spender allwonces. It gets the current allowance, If trying to subtract more than allowed, <code>revert</code>. If not, subtract <code>subtractedValue</code> from allowance. Emit <code>Approval</code> with the new allowance.</p>
+<p>Return true.</p>
+<h4>VIEW FUNCTION</h4>
+<ul>
+<li><code>totalSupply()</code> returns the current total supply.</li>
+<li><code>balanceOf(address user)</code> returns a specific wallet’s token balance.</li>
+<li><code>allowance(address _owner, address spender)</code> returns the current approved amount for a spender.</li>
+</ul>
+<p>And Voila! We’ve just built a deflationary ERC-20 token with a transfer fee mechanism that burns tokens, funds the treasury, and rewards holders.</p>
+<p>This mechanism can help create scarcity while funding development and incentivizing long-term holding. It’s a great fit for projects that want sustainable tokenomics.</p>
+<p>You can try deploying this contract on a testnet, tweak the fee percentages, or extend it with staking features. If you build something with it, share your results. I’d love to see them!</p>
+<p>Also remember we use no battles tested dependencies like Openzeppelin here. I’m not perfect, if you spot any bug in this contract, feel free to PR on my Github (Link below)</p>
+<h4>THANKS FOR READING!!</h4>
+<p>Check the full code here on <a href="https://github.com/IconTheGreat/deflationary-erc20">Github</a></p>
+<p>And don’t forget to follow me on my socials to keep up on what im building next <a href="https://x.com/Icon_The_Great">Twitter</a></p>
+<p>ciao ciao!!</p>
 
-    </main>
-    <footer class='container' style='text-align: center;'>
-        <p>
-            <a href='https://github.com/IconTheGreat'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
-                    viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round'
-                    stroke-linejoin='round' class='feather feather-github'>
-                    <path
-                        d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'>
-                    </path>
-                </svg></a>
-            &nbsp;|&nbsp;
-            <a href='https://twitter.com/Icon_The_Great'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'
-                    viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round'
-                    stroke-linejoin='round' class='feather feather-twitter'>
-                    <path
-                        d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z'>
-                    </path>
-                </svg></a>
-        </p>
-        <p class='footer-credit'>
-            © 2025 <a href='https://twitter.com/Icon_The_Great'>ICON</a>. Powered by <a
-                href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
-        </p>
-    </footer>
-    <script>
-        function toggleMenu() {
-            let nav = document.getElementById('navLinks');
-            nav.classList.toggle('open');
-        }
-    </script>
+</main>
+<footer class='container' style='text-align: center;'>
+    <p>
+        <a href='https://github.com/IconTheGreat'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-github'><path d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'></path></svg></a>
+        &nbsp;|&nbsp;
+        <a href='https://twitter.com/Icon_The_Great'><svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-twitter'><path d='M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z'></path></svg></a>
+    </p>
+    <p class='footer-credit'>
+        © 2025 <a href='https://twitter.com/Icon_The_Great'>ICON</a>. Powered by <a href='https://github.com/0xh4ty/xeniria'>Xeniria</a>.
+    </p>
+</footer>
+<script>
+  function toggleMenu() {
+    let nav = document.getElementById('navLinks');
+    nav.classList.toggle('open');
+  }
+</script>
 </body>
-
 </html>
