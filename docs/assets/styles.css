@@ -255,7 +255,7 @@ footer.container {
 h2 {
     color: #002658;
     /* Blue color code */
-    text-shadow: 0 0 2px #007bff;
+    text-shadow: 0 0 2px #ffffff;
     animation: glow 1s ease-in-out infinite alternate;
 }
 
